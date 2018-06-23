@@ -2,7 +2,7 @@
 namespace core;
 
 class Router {
-   public function init(){
+   static public function init(){
        
    }
 }
