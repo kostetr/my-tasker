@@ -49,11 +49,7 @@
             </div>
         </nav>
         <main>
-            <div class="row">
-                <div class="col-lg-2">2222</div>
-                <div class="col-lg-8">111 </div>
 
-            </div>
         </main>
 
 
