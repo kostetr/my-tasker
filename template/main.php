@@ -11,7 +11,10 @@
 
         <title>Задания группы 3.16</title>
         <style>
-            .card-header {
+            table {
+                text-align: left;
+            }
+            nav {
                 margin-bottom: 15px;
             }
             .in-line {
@@ -21,7 +24,6 @@
         </style>
     </head>
     <body>
-
         <main>
             <div class="card text-center">
                 <div class="card-header">
@@ -37,90 +39,95 @@
                         </li>
                     </ul>
                 </div>
-                <table class="table table-bordered table-sm ">
-                    <tr>
-                        <td rowspan="6">1.</td>
-                        <th>Название</th>
-                        <th colspan="3" >Задание №1</th>
-                        <th>Добавлено</th>
-                        <td class="in-line">28-04-1988</td>
-                    </tr>
-                    <tr>
-                        <th rowspan="5">Описание</th>
-                        <td colspan="3" rowspan="5">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                        </td>
-                        <th>Статус</th>        
-                        <td>Новое</td>
-                    </tr>
-                    <tr>
-                        <th>Приоритет</th>        
-                        <td>Высокий</td>
-                    </tr>
-                    <tr>
-                        <th>Выдано</th>        
-                        <td class="in-line">28-04-1988</td>
-                    </tr>
-                    <tr>
-                        <th class="in-line">Выполнить до:</th>        
-                        <td class="in-line">28-04-1988</td>
-                    </tr>
-                    <tr>
-                        <td colspan="2">
-                            <form method="POST" action="/tasks/changStatus">
-                                <input type="hidden" name="task_id" value="">
-                                <input type="hidden" name="status_id" value="2">
-                                <input type="hidden" name="field_bd" value="start_date">
-                                <input type="hidden" name="redirect" value="tasks">   
-                                <button type="button" class="btn btn-success">Активировать задание</button>
-<!--                                <input type="submit" value="Активировать задание">-->
-                            </form>
-                        </td> 
-                    </tr>
+                
+                <div class="card-body">
+                    <table class="table table-bordered table-sm ">
+                        <tr>
+                            <td rowspan="6">1.</td>
+                            <th>Название</th>
+                            <th colspan="3" >Задание №1</th>
+                            <th>Добавлено</th>
+                            <td class="in-line">28-04-1988</td>
+                        </tr>
+                        <tr>
+                            <th rowspan="5">Описание</th>
+                            <td colspan="3" rowspan="5">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                            </td>
+                            <th>Статус</th>        
+                            <td>Новое</td>
+                        </tr>
+                        <tr>
+                            <th>Приоритет</th>        
+                            <td>Высокий</td>
+                        </tr>
+                        <tr>
+                            <th>Выдано</th>        
+                            <td class="in-line">28-04-1988</td>
+                        </tr>
+                        <tr>
+                            <th class="in-line">Выполнить до:</th>        
+                            <td class="in-line">28-04-1988</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <form method="POST" action="/tasks/changStatus">
+                                    <input type="hidden" name="task_id" value="">
+                                    <input type="hidden" name="status_id" value="2">
+                                    <input type="hidden" name="field_bd" value="start_date">
+                                    <input type="hidden" name="redirect" value="tasks">   
+                                    <input type="submit" value="Активировать задание">
+                                </form>
+                            </td> 
+                        </tr>
 
-                </table>
-                <table class="table table-bordered table-sm ">
-                    <tr>
-                        <td rowspan="6">2.</td>
-                        <th>Название</th>
-                        <th colspan="3" >Задание №2</th>
-                        <th>Добавлено</th>
-                        <td class="in-line">28-04-1988</td>
-                    </tr>
-                    <tr>
-                        <th rowspan="5">Описание</th>
-                        <td colspan="3" rowspan="5">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                        </td>
-                        <th>Статус</th>        
-                        <td>Новое</td>
-                    </tr>
-                    <tr>
-                        <th>Приоритет</th>        
-                        <td>Высокий</td>
-                    </tr>
-                    <tr>
-                        <th>Выдано</th>        
-                        <td class="in-line">28-04-1988</td>
-                    </tr>
-                    <tr>
-                        <th class="in-line">Выполнить до:</th>        
-                        <td class="in-line">28-04-1988</td>
-                    </tr>
-                    <tr>
-                        <td colspan="2">
-                            <form method="POST" action="/tasks/changStatus">
-                                <input type="hidden" name="task_id" value="">
-                                <input type="hidden" name="status_id" value="2">
-                                <input type="hidden" name="field_bd" value="start_date">
-                                <input type="hidden" name="redirect" value="tasks">   
-                                <input type="submit" value="Активировать задание">
-                            </form>
-                        </td> 
-                    </tr>
+                    </table>
+                    <table class="table table-bordered table-sm ">
+                        <tr>
+                            <td rowspan="6">2.</td>
+                            <th>Название</th>
+                            <th colspan="3" >Задание №2</th>
+                            <th>Добавлено</th>
+                            <td class="in-line">28-04-1988</td>
+                        </tr>
+                        <tr>
+                            <th rowspan="5">Описание</th>
+                            <td colspan="3" rowspan="5">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                            </td>
+                            <th>Статус</th>        
+                            <td>Новое</td>
+                        </tr>
+                        <tr>
+                            <th>Приоритет</th>        
+                            <td>Высокий</td>
+                        </tr>
+                        <tr>
+                            <th>Выдано</th>        
+                            <td class="in-line">28-04-1988</td>
+                        </tr>
+                        <tr>
+                            <th class="in-line">Выполнить до:</th>        
+                            <td class="in-line">28-04-1988</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <form method="POST" action="/tasks/changStatus">
+                                    <input type="hidden" name="task_id" value="">
+                                    <input type="hidden" name="status_id" value="2">
+                                    <input type="hidden" name="field_bd" value="start_date">
+                                    <input type="hidden" name="redirect" value="tasks">   
+                                    <input type="submit" value="Активировать задание">
+                                </form>
+                            </td> 
+                        </tr>
 
-                </table>
+                    </table>
+
+                </div>
             </div>
+
+
 
 
 
