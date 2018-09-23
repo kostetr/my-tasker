@@ -3,10 +3,10 @@
         <div class="card-header">
             <ul class="nav nav-tabs card-header-tabs">
                 <li class="nav-item">
-                    <a class="nav-link active" href="http://my-tasker.local">Новые задания</a>
+                    <a class="nav-link " href="http://my-tasker.local">Новые задания</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " href="http://my-tasker.local/tasks/progress">Выполняемые</a>
+                    <a class="nav-link active" href="progress">Выполняемые</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="archive">Архив</a>
@@ -121,3 +121,5 @@
 
 
 </main>
+
+

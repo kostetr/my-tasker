@@ -15,7 +15,7 @@ class Tasks extends AbstractController {
 
     public function action_index() {
 //        $this->viewer->tasks = $this->model->new_tasks();
-        $this->viewer->content_view = 'tasks_index_view.php';
+        $this->viewer->content_view = '\content\tasks_index_view.php';
         $this->viewer->show();
     }
 
