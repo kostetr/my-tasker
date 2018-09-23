@@ -24,8 +24,9 @@
         </style>
     </head>
     <body>
-        <?php include_once 'template' . DIRECTORY_SEPARATOR . $this->content_view; ?>
-
+        <main>
+            <?php include_once 'template' . DIRECTORY_SEPARATOR . $this->content_view; ?>
+        </main>
         <!-- Footer -->
         <footer>
             <!-- Copyright -->

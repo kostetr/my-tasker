@@ -1,24 +1,23 @@
-<main>
     <div class="card text-center">
         <div class="card-header">
             <ul class="nav nav-tabs card-header-tabs">
                 <li class="nav-item">
-                    <a class="nav-link " href="http://my-tasker.local">Новые задания</a>
+                    <a class="nav-link " href="<?= \core\Router::root() ?>">Новые задания</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="progress">Выполняемые</a>
+                    <a class="nav-link active" href="<?= \core\Router::root() ?>/tasks/progress">Выполняемые</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="archive">Архив</a>
+                    <a class="nav-link" href="<?= \core\Router::root() ?>/tasks/archive">Архив</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link disabled" href="mytasks">Мои задачи</a>
+                    <a class="nav-link disabled" href="<?= \core\Router::root() ?>/tasks/mytasks">Мои задачи</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link disabled" href="addtasks">Добавить задачу</a>
+                    <a class="nav-link disabled" href="<?= \core\Router::root() ?>/tasks/addtasks">Добавить задачу</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="users">Пользователи</a>
+                    <a class="nav-link" href="<?= \core\Router::root() ?>/users/list">Пользователи</a>
                 </li>
 
             </ul>
@@ -115,11 +114,5 @@
         </div>
     </div>
 
-
-
-
-
-
-</main>
 
 
