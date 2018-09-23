@@ -11,15 +11,14 @@
                     <a class="nav-link" href="<?= \core\Router::root() ?>/tasks/archive">Архив</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link disabled" href="<?= \core\Router::root() ?>/tasks/mytasks">Мои задачи</a>
+                    <a class="nav-link " href="<?= \core\Router::root() ?>/tasks/mytasks">Мои задачи</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link disabled" href="<?= \core\Router::root() ?>/tasks/addtasks">Добавить задачу</a>
+                    <a class="nav-link " href="<?= \core\Router::root() ?>/tasks/addtasks">Добавить задачу</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="<?= \core\Router::root() ?>/users/list">Пользователи</a>
                 </li>
-
             </ul>
         </div>
 

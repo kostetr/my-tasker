@@ -6,8 +6,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
         <!-- Bootstrap CSS -->
-        <link href="template/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-        <link href="template/css/main.css" rel="stylesheet" type="text/css"/>
+        <link href="<?= \core\Router::root() ?>/template/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <link href="<?= \core\Router::root() ?>/template/css/main.css" rel="stylesheet" type="text/css"/>
 
         <title>Задания группы 3.16</title>
         <style>
@@ -31,7 +31,7 @@
         <footer>
             <!-- Copyright -->
             <div class="footer-copyright text-center py-3">© 2018 Copyright:
-                <a href="https://mdbootstrap.com/bootstrap-tutorial/"> переделать.com</a>
+                <a href="<?= \core\Router::root() ?>"> Группа 3.16</a>
             </div>
             <!-- Copyright -->
         </footer>

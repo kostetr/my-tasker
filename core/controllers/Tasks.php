@@ -15,17 +15,23 @@ class Tasks extends AbstractController {
 
     public function action_index() {
 //        $this->viewer->tasks = $this->model->new_tasks();
-        $this->viewer->content_view = '\content\tasks_index_view.php';
+        $this->viewer->content_view = 'content\tasks_index_view.php';
         $this->viewer->show();
     }
     public function action_progress() {
-//        $this->viewer->tasks = $this->model->new_tasks();
-        $this->viewer->content_view = '\content\tasks_progress_view.php';
+        $this->viewer->content_view = 'content\tasks_progress_view.php';
         $this->viewer->show();
     }
     public function action_archive() {
-//        $this->viewer->tasks = $this->model->new_tasks();
-        $this->viewer->content_view = '\content\tasks_archive_view.php';
+        $this->viewer->content_view = 'content\tasks_archive_view.php';
+        $this->viewer->show();
+    }
+    public function action_mytasks() {
+        $this->viewer->content_view = 'content\tasks_mytasks_view.php';
+        $this->viewer->show();
+    }
+    public function action_addtasks() {
+        $this->viewer->content_view = 'content\tasks_addtasks_view.php';
         $this->viewer->show();
     }
 

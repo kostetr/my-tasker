@@ -8,10 +8,10 @@
                     <a class="nav-link " href="<?= \core\Router::root() ?>/tasks/progress">Выполняемые</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="<?= \core\Router::root() ?>/tasks/archive">Архив</a>
+                    <a class="nav-link" href="<?= \core\Router::root() ?>/tasks/archive">Архив</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " href="<?= \core\Router::root() ?>/tasks/mytasks">Мои задачи</a>
+                    <a class="nav-link active" href="<?= \core\Router::root() ?>/tasks/mytasks">Мои задачи</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link " href="<?= \core\Router::root() ?>/tasks/addtasks">Добавить задачу</a>
