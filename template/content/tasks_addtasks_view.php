@@ -19,10 +19,10 @@
             <li class="nav-item">
                 <a class="nav-link" href="<?= \core\Router::root() ?>/users/list">Пользователи</a>
             </li>           
-            <li class="nav navbar-right"><a href="<?= \core\Router::root() ?>/auth/exit" class="btn btn-secondary">Выход</a></li>        
+            <li class="rightbutton">
+                <a href="<?= \core\Router::root() ?>/auth/exit" class="btn btn-secondary">Выход</a>
+            </li>        
         </ul>
-
-
     </div>
 
     <div class="card-body">

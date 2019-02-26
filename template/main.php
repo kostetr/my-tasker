@@ -20,9 +20,14 @@
             .in-line {
                 white-space: nowrap;
             }
-            li.rightbutton {
-             text-align: right;
+
+            .rightbutton {
+                position: absolute; 
+                top: 10px; 
+                right: 10px;
             }
+
+
 
         </style>
     </head>
