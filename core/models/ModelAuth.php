@@ -13,15 +13,17 @@ class ModelAuth extends AbstractModel {
 
     public function addUser($user) {
         if ($this->db->connect_errno === 0) {
-            $query = "INSERT INTO " . $this->table . "(`id`, `name`, `surname`, `login`, `password`, `referral_link`) VALUES (NULL, '" . $user['name'] . "', '" . $user['surname'] . "', '" . $user['login'] . "', '" . $user['password'] . "', '" . $user['referral_link'] . "');";
+            $query = "INSERT INTO " . $this->table . " (`id`, `id_doc`, `login`, `password`, `name`, `surname`, `patronymic`, `gender_id`, `birthday`, `post_id`, `group_id`, `reset_rating_date`) VALUES (NULL, '" . $user['id_doc'] . "', '" . $user['login'] . "', '" . $user['password'] . "', '" . $user['name'] . "', '" . $user['surname'] . "', '" . $user['patronymic'] . "', '" . $user['gender_id'] . "', '" . $user['birthday'] . "', '" . $user['post_id'] . "', '" . $user['group_id'] . "', NULL);";
             return $this->db->query($query);
         }
     }
-        public function selectSecretPass() {
+
+    public function selectSecretPass() {
         $query = "SELECT * FROM groups";
         $result = $this->db->query($query);
         if ($result) {
             return $result->fetch_all(MYSQLI_ASSOC);
         }
     }
+
 }

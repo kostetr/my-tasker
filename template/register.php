@@ -29,21 +29,34 @@
                     <input type="text" class="login-field" placeholder="Имя" name="name" id="name" autofocus>
                     <label class="login-field-icon fui-user" for="name"></label>
                 </div>
-                <select name="gender">
-                    <option disabled selected>Пол</option>
-                    <option value="id">Мужской</option>
-                    <option value="id">Женский</option>
-                </select>
                 <div class="control-group">
-                    <input type="text" class="login-field" placeholder="Дата рождения" name="birthday" id="birthday" autofocus>
+                    <input type="text" class="login-field" placeholder="Отчество" name="patronymic" id="patronymic" autofocus>
+                    <label class="login-field-icon fui-user" for="patronymic"></label>
+                </div>
+                <div class="control-group">
+                    <input type="date" class="login-field" placeholder="Дата рождения" name="birthday" id="birthday" autofocus>
                     <label class="login-field-icon fui-user" for="birthday"></label>
                 </div>
-                <select name="post_id">
-                    <option disabled selected>Должность</option>
-                    <option value="post_id">Мужской</option>
-                    <option value="post_id Гена">Женский</option>
-                </select>
-
+                <div class="control-group">
+                    <input type="text" class="login-field" placeholder="Пароль доступа" name="secret_pass" id="secret_pass" autofocus>
+                    <label class="login-field-icon fui-user" for="secret_pass"></label>
+                </div>
+                <div class="control-group">
+                    <select name="gender">
+                        <option disabled selected>Пол</option>
+                        <?php foreach ($this->gender as $gender_item): ?>  
+                            <option value="<?= $gender_item['id'] ?>"><?= $gender_item['name'] ?></option>
+                        <?php endforeach ?>
+                    </select>   
+                </div>
+                <div class="control-group">
+                    <select name="post_id">
+                        <option disabled selected>Должность</option>
+                        <?php foreach ($this->posts as $post_item): ?>  
+                            <option value="<?= $post_item['id'] ?>"><?= $post_item['name'] ?></option>
+                        <?php endforeach ?>
+                    </select>
+                </div>
                 <input type="submit" class="btn btn-primary btn-large btn-block" value="Зарегистрироваться"/>
                 <a class="login-link" href="/auth">Уже зарегистрированы? Войти.</a>
             </div>

@@ -1,10 +1,10 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.7
+-- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Фев 28 2019 г., 16:04
--- Версия сервера: 5.6.38
+-- Время создания: Фев 28 2019 г., 21:55
+-- Версия сервера: 5.6.41
 -- Версия PHP: 5.5.38
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -115,7 +115,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `id_doc`, `login`, `password`, `name`, `surname`, `patronymic`, `gender_id`, `birthday`, `post_id`, `group_id`, `reset_rating_date`) VALUES
-(1, 28960, 'kostetr', '$2y$10$xr2XQ.RQ6OBdw4vLANtV1OpPUwjRjnjmGDHqLNMB7rW/tChTx6iji', 'Константин', 'Рябушенко', 'Григорьевич', 3, '1988-04-28', 2, 1, NULL);
+(1, 28960, 'kostetr', '$2y$10$xr2XQ.RQ6OBdw4vLANtV1OpPUwjRjnjmGDHqLNMB7rW/tChTx6iji', 'Константин', 'Рябушенко', 'Григорьевич', 3, '1988-04-28', 2, 1, NULL),
+(2, 28961, 'kostetr2', '$2y$10$xr2XQ.RQ6OBdw4vLANtV1OpPUwjRjnjmGDHqLNMB7rW/tChTx6iji', 'Константин', 'Рябушенко', 'Григорьевич', 3, '1988-04-28', 2, 2, NULL);
 
 --
 -- Индексы сохранённых таблиц
@@ -174,7 +175,7 @@ ALTER TABLE `posts`
 -- AUTO_INCREMENT для таблицы `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Ограничения внешнего ключа сохраненных таблиц
