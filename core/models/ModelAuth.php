@@ -17,4 +17,11 @@ class ModelAuth extends AbstractModel {
             return $this->db->query($query);
         }
     }
+        public function selectSecretPass() {
+        $query = "SELECT * FROM groups";
+        $result = $this->db->query($query);
+        if ($result) {
+            return $result->fetch_all(MYSQLI_ASSOC);
+        }
+    }
 }

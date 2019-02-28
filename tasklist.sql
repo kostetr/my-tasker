@@ -1,10 +1,10 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.3
+-- version 4.7.7
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Май 11 2018 г., 15:17
--- Версия сервера: 5.6.37
+-- Время создания: Фев 28 2019 г., 16:04
+-- Версия сервера: 5.6.38
 -- Версия PHP: 5.5.38
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -25,75 +25,69 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `priority`
+-- Структура таблицы `gender`
 --
 
-CREATE TABLE `priority` (
-  `id` int(11) NOT NULL,
-  `name` varchar(255) NOT NULL
+CREATE TABLE `gender` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Дамп данных таблицы `priority`
+-- Дамп данных таблицы `gender`
 --
 
-INSERT INTO `priority` (`id`, `name`) VALUES
-(1, 'Низкий'),
-(2, 'Средний'),
-(3, 'Высокий');
+INSERT INTO `gender` (`id`, `name`) VALUES
+(3, 'Мужской'),
+(4, 'Женский');
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `status`
+-- Структура таблицы `groups`
 --
 
-CREATE TABLE `status` (
-  `id` int(11) NOT NULL,
-  `name` varchar(255) NOT NULL
+CREATE TABLE `groups` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `value` int(3) NOT NULL,
+  `secret_pass` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Дамп данных таблицы `status`
+-- Дамп данных таблицы `groups`
 --
 
-INSERT INTO `status` (`id`, `name`) VALUES
-(1, 'В ожидании'),
-(2, 'Выполняется'),
-(3, 'Готово');
+INSERT INTO `groups` (`id`, `name`, `value`, `secret_pass`) VALUES
+(1, 'root', 100, 'wB9GvtiF2KpDG3D7iyPvUqYFggRUj2LwzfwuEeLvsBt3E9mr3qyrl0UvpaHaqkJ741SuDZt48QieuLqkn4bxSmOjwPxX6WRICOp90NsJJTH5752dySyHebQqwVYbkBUXMfEZ8ESXTDoGOFrvMhY8o17LJLwLqb3INtgiw0tS3Cp7efufCQgkBJrOAuCxqZ1f6soaQR0nl1SxYQGwRPxKuO3ktIaM3gqw7iMd9qTavFUWVnDvGEZiVAIBVamMQbh'),
+(2, 'admin', 200, 'grVbIlG4mAb5K35cknNIna9Is32mCVhUBwkCtbScaOULtT5XT4V3NpEqUEY91kPti4k3FCqX8Z5HWzCdUUW1AUcKw04TBt7XRrET9fGgBhZVGgFGwt2IR0SyQjHwoc5QuxxUDlyDFGLTrK8hN0m103C4cvTaIMBJWMuwY9KnsiVWAlHWo8xE9ZLJlspxV8F3VJYKU4TxHI2qPqk21o2Gd8mJudGScRg6LlhXertNu2r2NrJFr0FRuKIHn3vBnMc'),
+(3, 'user', 300, 'zo1fFe0MJXilZK4ZRDLybo67kmevoHzYuXPRX7tjxeabwN955rO6h47L2y6HS2SJRMTYB2nJscKVKP0FeH4C8GMpCl83M79jOv6PeNA7D7diquBbwS0c4k4mCaSDq5mSIsHILvs1j313uwk8LqdOdo84dJaODxDJBZRmGMpVgGwZEnehQ6KI8wC08Ne5ulIPV8ZCQirrNNzlLRcf9JowwQINgpk1v2KN7ljuqqrR0kZw4HtVKqk930ZxrgpjqWE');
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `tasks`
+-- Структура таблицы `posts`
 --
 
-CREATE TABLE `tasks` (
-  `id` int(11) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `description` text NOT NULL,
-  `status_id` int(11) NOT NULL,
-  `priority_id` int(11) NOT NULL,
-  `add_date` date DEFAULT NULL,
-  `start_date` date DEFAULT NULL,
-  `end_date` date DEFAULT NULL,
-  `deadline` date NOT NULL,
-  `master_id` int(11) NOT NULL
+CREATE TABLE `posts` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Дамп данных таблицы `tasks`
+-- Дамп данных таблицы `posts`
 --
 
-INSERT INTO `tasks` (`id`, `name`, `user_id`, `description`, `status_id`, `priority_id`, `add_date`, `start_date`, `end_date`, `deadline`, `master_id`) VALUES
-(2, 'Покраска', 4, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 3, 3, '2018-05-01', '2018-04-26', '2018-05-11', '2018-04-29', 1),
-(3, 'Тарировка каналов на АПК', 4, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 3, 3, '2018-05-01', '2010-05-18', '2018-05-11', '2018-04-28', 1),
-(4, 'Тест взята в обработку', 4, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 2, 3, '2018-05-01', '2018-04-25', NULL, '2018-04-28', 1),
-(5, 'тест Готово', 4, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 3, 3, '2018-05-01', '2018-04-24', '2018-04-23', '2018-04-27', 1),
-(16, 'Новая задача 3', 2, 'Новая задача 3\r\nприоритет низкий\r\nВыполнить до: 02.01.2019\r\nисполнитель ВАТМАН\r\n\r\nдобавлено 11-05-2018', 3, 1, '2018-05-11', '2018-05-11', '2018-05-11', '2019-01-02', 4),
-(18, 'Новая задача 1 kkk1', 4, 'Новая задача 1 kkk1\r\nприоритет средний\r\nВыполнить до: 01.01.2019\r\nисполнитель ккк1\r\n\r\nдобавлено 11-05-2018', 1, 2, '2018-05-11', NULL, NULL, '2019-01-01', 2),
-(19, 'qqqqqqqqqqqqqqq', 3, 'asdasdasdasdas Побриться)))))', 3, 1, '2018-05-11', '2018-05-11', '2018-05-11', '2018-05-15', 4);
+INSERT INTO `posts` (`id`, `name`) VALUES
+(1, 'Ведущий инженер'),
+(2, 'Инженер-испытатель I категории'),
+(3, 'Инженер-испытатель II категории'),
+(4, 'Инженер-испытатель III категории'),
+(5, 'Испытатель измерительных систем 5 категории'),
+(6, 'Испытатель измерительных систем 4 категории'),
+(7, 'Испытатель измерительных систем 3 категории'),
+(8, 'Испытатель измерительных систем 2 категории'),
+(9, 'Испытатель измерительных систем 1 категории');
 
 -- --------------------------------------------------------
 
@@ -102,94 +96,97 @@ INSERT INTO `tasks` (`id`, `name`, `user_id`, `description`, `status_id`, `prior
 --
 
 CREATE TABLE `users` (
-  `id` int(11) NOT NULL,
+  `id` int(11) UNSIGNED NOT NULL,
+  `id_doc` int(7) NOT NULL,
+  `login` varchar(100) NOT NULL,
+  `password` varchar(255) NOT NULL,
   `name` varchar(100) NOT NULL,
   `surname` varchar(100) NOT NULL,
-  `login` varchar(30) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `referral_link` varchar(255) NOT NULL
+  `patronymic` varchar(100) NOT NULL,
+  `gender_id` int(10) UNSIGNED NOT NULL,
+  `birthday` date NOT NULL,
+  `post_id` int(10) UNSIGNED NOT NULL,
+  `group_id` int(10) UNSIGNED NOT NULL,
+  `reset_rating_date` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `surname`, `login`, `password`, `referral_link`) VALUES
-(1, 'Константин', 'Рябушенко', 'kostetr', '$2y$10$sDVJG3edpbfRR8vcfnGcWOfO1rgnqVoDCmPsInzPF5.ltsqZ0qYiy', 'root'),
-(2, 'Андрей', 'Сопин', 'batman', '$2y$10$sDVJG3edpbfRR8vcfnGcWOfO1rgnqVoDCmPsInzPF5.ltsqZ0qYiy', 'root2'),
-(3, 'Константин', 'Павлючик', 'kos', '$2y$10$sDVJG3edpbfRR8vcfnGcWOfO1rgnqVoDCmPsInzPF5.ltsqZ0qYiy', 'kostetr'),
-(4, 'kkk', 'rrr', 'kkk1', '$2y$10$sDVJG3edpbfRR8vcfnGcWOfO1rgnqVoDCmPsInzPF5.ltsqZ0qYiy', 'kkkkkrrrrrkk'),
-(5, 'qqq', 'qqq1', 'qqq2', '$2y$10$YP.Q1gf9Kz37cxBsndGn4OfFzMguWaALJ0UCkvpHucIr1D8o.5F9O', 'qqqqqqqqqqqq'),
-(6, 'qqq2', 'qqq3', 'qqq1', '$2y$10$X9FOo0TMUa/XNTz6fKZqoeEdvjwCpXfF.r8OrRU3BfSj/cafh3gDO', 'q2qq3qqq223q');
+INSERT INTO `users` (`id`, `id_doc`, `login`, `password`, `name`, `surname`, `patronymic`, `gender_id`, `birthday`, `post_id`, `group_id`, `reset_rating_date`) VALUES
+(1, 28960, 'kostetr', '$2y$10$xr2XQ.RQ6OBdw4vLANtV1OpPUwjRjnjmGDHqLNMB7rW/tChTx6iji', 'Константин', 'Рябушенко', 'Григорьевич', 3, '1988-04-28', 2, 1, NULL);
 
 --
 -- Индексы сохранённых таблиц
 --
 
 --
--- Индексы таблицы `priority`
+-- Индексы таблицы `gender`
 --
-ALTER TABLE `priority`
+ALTER TABLE `gender`
   ADD PRIMARY KEY (`id`);
 
 --
--- Индексы таблицы `status`
+-- Индексы таблицы `groups`
 --
-ALTER TABLE `status`
+ALTER TABLE `groups`
   ADD PRIMARY KEY (`id`);
 
 --
--- Индексы таблицы `tasks`
+-- Индексы таблицы `posts`
 --
-ALTER TABLE `tasks`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `user_id` (`user_id`),
-  ADD KEY `master_id` (`master_id`),
-  ADD KEY `priority_id` (`priority_id`),
-  ADD KEY `status_id` (`status_id`);
+ALTER TABLE `posts`
+  ADD PRIMARY KEY (`id`) USING BTREE;
 
 --
 -- Индексы таблицы `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `post_id` (`post_id`),
+  ADD KEY `gender_id` (`gender_id`),
+  ADD KEY `group_id` (`group_id`);
 
 --
 -- AUTO_INCREMENT для сохранённых таблиц
 --
 
 --
--- AUTO_INCREMENT для таблицы `priority`
+-- AUTO_INCREMENT для таблицы `gender`
 --
-ALTER TABLE `priority`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+ALTER TABLE `gender`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
 --
--- AUTO_INCREMENT для таблицы `status`
+-- AUTO_INCREMENT для таблицы `groups`
 --
-ALTER TABLE `status`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+ALTER TABLE `groups`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
 --
--- AUTO_INCREMENT для таблицы `tasks`
+-- AUTO_INCREMENT для таблицы `posts`
 --
-ALTER TABLE `tasks`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+ALTER TABLE `posts`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
 --
 -- AUTO_INCREMENT для таблицы `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 --
 -- Ограничения внешнего ключа сохраненных таблиц
 --
 
 --
--- Ограничения внешнего ключа таблицы `tasks`
+-- Ограничения внешнего ключа таблицы `users`
 --
-ALTER TABLE `tasks`
-  ADD CONSTRAINT `tasks_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
-  ADD CONSTRAINT `tasks_ibfk_2` FOREIGN KEY (`master_id`) REFERENCES `users` (`id`),
-  ADD CONSTRAINT `tasks_ibfk_3` FOREIGN KEY (`status_id`) REFERENCES `status` (`id`),
-  ADD CONSTRAINT `tasks_ibfk_4` FOREIGN KEY (`priority_id`) REFERENCES `priority` (`id`);
+ALTER TABLE `users`
+  ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`post_id`) REFERENCES `posts` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `users_ibfk_2` FOREIGN KEY (`gender_id`) REFERENCES `gender` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `users_ibfk_3` FOREIGN KEY (`group_id`) REFERENCES `groups` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

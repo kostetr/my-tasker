@@ -19,7 +19,11 @@ class Auth extends AbstractController {
         $this->viewer->show();
     }
 
-    public function action_register() {
+    public function action_register() {        
+        $this->model->table = 'gender';
+        $this->viewer->gender = $this->model->all();
+        $this->model->table = 'posts';
+        $this->viewer->posts =$this->model->all();
         $this->viewer->content_view = "register.php";
         $this->viewer->show();
     }
@@ -27,7 +31,8 @@ class Auth extends AbstractController {
     //Регистрация
     public function action_adduser() {
         $user = filter_input_array(INPUT_POST);
-        $user['referral_link'] = self::generateLink(12);
+//        $user['referral_link'] = self::generateLink(12);
+        
         if ($this->user_validate($user)) {
             $user['password'] = password_hash($user['password'], PASSWORD_DEFAULT);
             $this->model->addUser($user);
@@ -45,7 +50,7 @@ class Auth extends AbstractController {
         if ($user_item) {
             if (password_verify($user['password'], $user_item->password)) {
                 $_SESSION['id'] = $user_item->id;
-                $_SESSION['login'] = $user_item->login;                
+                $_SESSION['login'] = $user_item->login;
                 Router::redirect('tasks/');
             } else {
                 Router::redirect('auth/');
@@ -64,7 +69,13 @@ class Auth extends AbstractController {
         if ($user_item) {
             return false;
         }
-        return true;
+        $registration_priority = $this->model->selectSecretPass();
+        foreach ($registration_priority as $secret_pass) {
+            if ($secret_pass['value']==$user['secret_pass']) {
+                $user['group']=$secret_pass['id'];
+                return true;
+            }
+        }
     }
 
     static public function getAuthLogin() {
