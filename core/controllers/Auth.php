@@ -35,6 +35,8 @@ class Auth extends AbstractController {
         if ($this->user_validate($user)) {
             $user['password'] = password_hash($user['password'], PASSWORD_DEFAULT);
             $this->model->table = 'users';
+            $user['group_id'] = $this->model->group_id;
+            $user['registered'] = date('Y-m-d');            
             $this->model->addUser($user);
         }
         Router::redirect('auth/');
@@ -49,8 +51,12 @@ class Auth extends AbstractController {
 
         if ($user_item) {
             if (password_verify($user['password'], $user_item->password)) {
-                $_SESSION['id'] = $user_item->id;
+                $_SESSION['id'] = $user_item->id;                
+                $_SESSION['id_doc'] = $user_item->id_doc;                
                 $_SESSION['login'] = $user_item->login;
+                $_SESSION['surename'] = $user_item->surename;
+                $_SESSION['name'] = $user_item->name;
+                $_SESSION['patronymic'] = $user_item->patronymic;                
                 Router::redirect('tasks/');
             } else {
                 Router::redirect('auth/');
@@ -71,10 +77,9 @@ class Auth extends AbstractController {
         }
         $this->model->table = 'groups';
         $registration_priority = $this->model->all();
-        foreach ($registration_priority as $secret_pass) {
-            if ($secret_pass['value'] == $user['secret_pass']) {
-                var_dump($secret_pass['value']);
-                $user['group'] = $secret_pass['id'];
+        foreach ($registration_priority as $value) {
+            if ($value['secret_pass'] === $user['secret_pass']) {
+                $this->model->group_id = $value['id'];
                 return true;
             }
         }

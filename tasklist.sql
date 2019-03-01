@@ -1,10 +1,10 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 4.7.7
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Фев 28 2019 г., 21:55
--- Версия сервера: 5.6.41
+-- Время создания: Мар 01 2019 г., 15:59
+-- Версия сервера: 5.6.38
 -- Версия PHP: 5.5.38
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -80,14 +80,14 @@ CREATE TABLE `posts` (
 
 INSERT INTO `posts` (`id`, `name`) VALUES
 (1, 'Ведущий инженер'),
-(2, 'Инженер-испытатель I категории'),
-(3, 'Инженер-испытатель II категории'),
-(4, 'Инженер-испытатель III категории'),
-(5, 'Испытатель измерительных систем 5 категории'),
-(6, 'Испытатель измерительных систем 4 категории'),
-(7, 'Испытатель измерительных систем 3 категории'),
-(8, 'Испытатель измерительных систем 2 категории'),
-(9, 'Испытатель измерительных систем 1 категории');
+(2, 'Инженер-испытатель I кат.'),
+(3, 'Инженер-испытатель II кат.'),
+(4, 'Инженер-испытатель III кат.'),
+(5, 'Исп. изм. систем 5 кат.'),
+(6, 'Исп. изм. систем 4 кат.'),
+(7, 'Исп. изм. систем 3 кат.'),
+(8, 'Исп. изм. систем 2 кат.'),
+(9, 'Исп. изм. систем 1 кат.');
 
 -- --------------------------------------------------------
 
@@ -107,6 +107,7 @@ CREATE TABLE `users` (
   `birthday` date NOT NULL,
   `post_id` int(10) UNSIGNED NOT NULL,
   `group_id` int(10) UNSIGNED NOT NULL,
+  `registered` date NOT NULL,
   `reset_rating_date` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -114,9 +115,10 @@ CREATE TABLE `users` (
 -- Дамп данных таблицы `users`
 --
 
-INSERT INTO `users` (`id`, `id_doc`, `login`, `password`, `name`, `surname`, `patronymic`, `gender_id`, `birthday`, `post_id`, `group_id`, `reset_rating_date`) VALUES
-(1, 28960, 'kostetr', '$2y$10$xr2XQ.RQ6OBdw4vLANtV1OpPUwjRjnjmGDHqLNMB7rW/tChTx6iji', 'Константин', 'Рябушенко', 'Григорьевич', 3, '1988-04-28', 2, 1, NULL),
-(2, 28961, 'kostetr2', '$2y$10$xr2XQ.RQ6OBdw4vLANtV1OpPUwjRjnjmGDHqLNMB7rW/tChTx6iji', 'Константин', 'Рябушенко', 'Григорьевич', 3, '1988-04-28', 2, 2, NULL);
+INSERT INTO `users` (`id`, `id_doc`, `login`, `password`, `name`, `surname`, `patronymic`, `gender_id`, `birthday`, `post_id`, `group_id`, `registered`, `reset_rating_date`) VALUES
+(1, 28960, 'kostetr', '$2y$10$xr2XQ.RQ6OBdw4vLANtV1OpPUwjRjnjmGDHqLNMB7rW/tChTx6iji', 'Константин', 'Рябушенко', 'Григорьевич', 3, '1988-04-28', 2, 1, '2019-02-27', NULL),
+(2, 28961, 'kostetr2', '$2y$10$xr2XQ.RQ6OBdw4vLANtV1OpPUwjRjnjmGDHqLNMB7rW/tChTx6iji', 'Константин', 'Рябушенко', 'Григорьевич', 3, '1988-04-28', 2, 2, '2019-02-27', NULL),
+(18, 30392, 'kostya', '$2y$10$QSflEYNX4opl.BCmv0AX4unV4oyd/GoyA1..rdPvTKYEFss63y2S2', 'Константин', 'Павлючик', 'Васильевич', 3, '1983-08-18', 3, 3, '2019-03-01', NULL);
 
 --
 -- Индексы сохранённых таблиц
@@ -175,7 +177,7 @@ ALTER TABLE `posts`
 -- AUTO_INCREMENT для таблицы `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- Ограничения внешнего ключа сохраненных таблиц

@@ -6,8 +6,8 @@
             </div>
             <div class="login-form">
                 <div class="control-group">
-                    <input type="text" class="login-field" placeholder="Табельный" name="idDoc" id="idDoc">
-                    <label class="login-field-icon fui-user" for="idDoc"></label>
+                    <input type="text" class="login-field" placeholder="Табельный" name="id_doc" id="id_doc">
+                    <label class="login-field-icon fui-user" for="id_doc"></label>
                 </div>
                 <div class="control-group">
                     <input type="text" class="login-field" placeholder="Логин" name="login" id="login">
@@ -34,15 +34,14 @@
                     <label class="login-field-icon fui-user" for="patronymic"></label>
                 </div>
                 <div class="control-group">
-                    <input type="date" class="login-field" placeholder="Дата рождения" name="birthday" id="birthday" autofocus>
-                    <label class="login-field-icon fui-user" for="birthday"></label>
+                    <input type="date" class="login-field"  name="birthday" id="birthday" autofocus>                    
                 </div>
                 <div class="control-group">
-                    <input type="text" class="login-field" placeholder="Пароль доступа" name="secret_pass" id="secret_pass" autofocus>
+                    <input type="password" class="login-field" placeholder="Пароль доступа" name="secret_pass" id="secret_pass" autofocus>
                     <label class="login-field-icon fui-user" for="secret_pass"></label>
                 </div>
                 <div class="control-group">
-                    <select name="gender">
+                    <select name="gender_id">
                         <option disabled selected>Пол</option>
                         <?php foreach ($this->gender as $gender_item): ?>  
                             <option value="<?= $gender_item['id'] ?>"><?= $gender_item['name'] ?></option>
