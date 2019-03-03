@@ -4,13 +4,14 @@
             <div class="app-title">
                 <h1>Регистрация</h1>
             </div>
+
             <div class="login-form">
                 <div class="control-group">
-                    <input type="text" class="login-field" placeholder="Табельный" name="id_doc" id="id_doc">
+                    <input type="text" class="login-field" placeholder="Табельный" name="id_doc" id="id-doc" autocomplete="off" pattern="[0-9]{,5}">
                     <label class="login-field-icon fui-user" for="id_doc"></label>
                 </div>
                 <div class="control-group">
-                    <input type="text" class="login-field" placeholder="Логин" name="login" id="login">
+                    <input type="text" class="login-field" placeholder="Логин" name="login" id="login" autocomplete="off">
                     <label class="login-field-icon fui-user" for="login"></label>
                 </div>
                 <div class="control-group">
@@ -22,34 +23,39 @@
                     <label class="login-field-icon fui-lock" for="pass-confirm"></label>
                 </div>
                 <div class="control-group">
-                    <input type="text" class="login-field" placeholder="Фамилия" name="surname" id="surname">
+                    <input type="text" class="login-field" placeholder="Фамилия" name="surname" id="surname" autocomplete="off">
                     <label class="login-field-icon fui-user" for="surname"></label>
                 </div>
                 <div class="control-group">
-                    <input type="text" class="login-field" placeholder="Имя" name="name" id="name" autofocus>
+                    <input type="text" class="login-field" placeholder="Имя" name="name" id="name" autofocus autocomplete="off">
                     <label class="login-field-icon fui-user" for="name"></label>
                 </div>
                 <div class="control-group">
-                    <input type="text" class="login-field" placeholder="Отчество" name="patronymic" id="patronymic" autofocus>
+                    <input type="text" class="login-field" placeholder="Отчество" name="patronymic" id="patronymic" autofocus autocomplete="off">
                     <label class="login-field-icon fui-user" for="patronymic"></label>
                 </div>
+                <div class="control-group" data-provide="datepicker">
+                    <input type="text" class="login-field" placeholder="дд-мм-гггг" name="birthday" id="birthday" autofocus autocomplete="off">
+                    <label class="login-field-icon fui-user" for="birthday"></label>
+                </div>
                 <div class="control-group">
-                    <input type="date" class="login-field"  name="birthday" id="birthday" autofocus>                    
+                    <input type="text" class="login-field" placeholder="Телефон" name="phone" id="phone" autocomplete="off">
+                    <label class="login-field-icon fui-user" for="phone"></label>
                 </div>
                 <div class="control-group">
                     <input type="password" class="login-field" placeholder="Пароль доступа" name="secret_pass" id="secret_pass" autofocus>
                     <label class="login-field-icon fui-user" for="secret_pass"></label>
                 </div>
-                <div class="control-group">
-                    <select name="gender_id">
+                <div class="select-width">                    
+                    <select name="gender_id" class="form-control">
                         <option disabled selected>Пол</option>
                         <?php foreach ($this->gender as $gender_item): ?>  
                             <option value="<?= $gender_item['id'] ?>"><?= $gender_item['name'] ?></option>
                         <?php endforeach ?>
-                    </select>   
+                    </select>
                 </div>
-                <div class="control-group">
-                    <select name="post_id">
+                <div class="select-width">                    
+                    <select name="post_id" class="form-control">
                         <option disabled selected>Должность</option>
                         <?php foreach ($this->posts as $post_item): ?>  
                             <option value="<?= $post_item['id'] ?>"><?= $post_item['name'] ?></option>

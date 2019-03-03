@@ -36,6 +36,8 @@ class Auth extends AbstractController {
             $user['password'] = password_hash($user['password'], PASSWORD_DEFAULT);
             $this->model->table = 'users';
             $user['group_id'] = $this->model->group_id;
+            $birthday = explode('-', $user['birthday']);
+            $user['birthday'] =$birthday[2].'-'.$birthday[1].'-'.$birthday[0];
             $user['registered'] = date('Y-m-d');            
             $this->model->addUser($user);
         }

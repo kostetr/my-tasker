@@ -3,6 +3,8 @@
     <head>
         <meta charset="UTF-8">
         <title>Авторизация</title>
+        <link href="<?= \core\Router::root() ?>/template/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <link href="<?= \core\Router::root() ?>/template/css/main.css" rel="stylesheet" type="text/css"/>
         <style>
             * {
                 box-sizing: border-box;
@@ -35,7 +37,11 @@
                 text-align: center;
             }
             .control-group {
-                margin-bottom: 10px;
+                margin-bottom: 10px;                
+            }
+            .select-width {
+                width: 255px;
+                margin-bottom: 10px;  
             }
 
             input {
@@ -83,10 +89,17 @@
                 margin-top: 12px;
             }
         </style>
+        
+
     </head>
     <body>
         <main>
-            <?php include_once  $this->content_view; ?>
+            <?php include_once $this->content_view; ?>
         </main>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+        <script src="<?= \core\Router::root() ?>/template/js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="<?= \core\Router::root() ?>/template/js/jquery.maskedinput.min.js" type="text/javascript"></script>
+        <script src="<?= \core\Router::root() ?>/template/js/main.js" type="text/javascript"></script>
     </body>
 </html>

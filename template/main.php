@@ -26,8 +26,8 @@
                 top: 10px; 
                 right: 10px;
             }
-            </style>
-            <script src="<?= \core\Router::root() ?>/template/js/main.js" type="text/javascript"></script>
+        </style>
+        <script src="<?= \core\Router::root() ?>/template/js/main.js" type="text/javascript"></script>
     </head>
     <body>
         <main>
