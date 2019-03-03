@@ -1,10 +1,10 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.7
+-- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Мар 01 2019 г., 15:59
--- Версия сервера: 5.6.38
+-- Время создания: Мар 03 2019 г., 19:32
+-- Версия сервера: 5.6.41
 -- Версия PHP: 5.5.38
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -103,6 +103,7 @@ CREATE TABLE `users` (
   `name` varchar(100) NOT NULL,
   `surname` varchar(100) NOT NULL,
   `patronymic` varchar(100) NOT NULL,
+  `phone` varchar(18) DEFAULT NULL,
   `gender_id` int(10) UNSIGNED NOT NULL,
   `birthday` date NOT NULL,
   `post_id` int(10) UNSIGNED NOT NULL,
@@ -115,10 +116,10 @@ CREATE TABLE `users` (
 -- Дамп данных таблицы `users`
 --
 
-INSERT INTO `users` (`id`, `id_doc`, `login`, `password`, `name`, `surname`, `patronymic`, `gender_id`, `birthday`, `post_id`, `group_id`, `registered`, `reset_rating_date`) VALUES
-(1, 28960, 'kostetr', '$2y$10$xr2XQ.RQ6OBdw4vLANtV1OpPUwjRjnjmGDHqLNMB7rW/tChTx6iji', 'Константин', 'Рябушенко', 'Григорьевич', 3, '1988-04-28', 2, 1, '2019-02-27', NULL),
-(2, 28961, 'kostetr2', '$2y$10$xr2XQ.RQ6OBdw4vLANtV1OpPUwjRjnjmGDHqLNMB7rW/tChTx6iji', 'Константин', 'Рябушенко', 'Григорьевич', 3, '1988-04-28', 2, 2, '2019-02-27', NULL),
-(18, 30392, 'kostya', '$2y$10$QSflEYNX4opl.BCmv0AX4unV4oyd/GoyA1..rdPvTKYEFss63y2S2', 'Константин', 'Павлючик', 'Васильевич', 3, '1983-08-18', 3, 3, '2019-03-01', NULL);
+INSERT INTO `users` (`id`, `id_doc`, `login`, `password`, `name`, `surname`, `patronymic`, `phone`, `gender_id`, `birthday`, `post_id`, `group_id`, `registered`, `reset_rating_date`) VALUES
+(1, 28960, 'kostetr', '$2y$10$xr2XQ.RQ6OBdw4vLANtV1OpPUwjRjnjmGDHqLNMB7rW/tChTx6iji', 'Константин', 'Рябушенко', 'Григорьевич', '+38(068)448-67-40', 3, '1988-04-28', 2, 1, '2019-02-27', NULL),
+(2, 28961, 'kostetr2', '$2y$10$xr2XQ.RQ6OBdw4vLANtV1OpPUwjRjnjmGDHqLNMB7rW/tChTx6iji', 'Константин', 'Рябушенко', 'Григорьевич', '+38(068)448-67-40', 3, '1988-04-28', 2, 2, '2019-02-27', NULL),
+(18, 30392, 'kostya', '$2y$10$QSflEYNX4opl.BCmv0AX4unV4oyd/GoyA1..rdPvTKYEFss63y2S2', 'Константин', 'Павлючик', 'Васильевич', '+38(097)234-60-82', 3, '1983-08-18', 3, 3, '2019-03-01', NULL);
 
 --
 -- Индексы сохранённых таблиц
@@ -177,7 +178,7 @@ ALTER TABLE `posts`
 -- AUTO_INCREMENT для таблицы `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- Ограничения внешнего ключа сохраненных таблиц
