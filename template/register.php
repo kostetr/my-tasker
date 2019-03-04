@@ -7,7 +7,7 @@
 
             <div class="login-form">
                 <div class="control-group">
-                    <input type="text" class="login-field" placeholder="Табельный" name="id_doc" id="id-doc" autocomplete="off" pattern="[0-9]{,5}">
+                    <input type="text" class="login-field" placeholder="Табельный" name="id_doc" id="id-doc" autocomplete="off" pattern="[0-9]{,5" autofocus>
                     <label class="login-field-icon fui-user" for="id_doc"></label>
                 </div>
                 <div class="control-group">
@@ -27,15 +27,15 @@
                     <label class="login-field-icon fui-user" for="surname"></label>
                 </div>
                 <div class="control-group">
-                    <input type="text" class="login-field" placeholder="Имя" name="name" id="name" autofocus autocomplete="off">
+                    <input type="text" class="login-field" placeholder="Имя" name="name" id="name" autocomplete="off">
                     <label class="login-field-icon fui-user" for="name"></label>
                 </div>
                 <div class="control-group">
-                    <input type="text" class="login-field" placeholder="Отчество" name="patronymic" id="patronymic" autofocus autocomplete="off">
+                    <input type="text" class="login-field" placeholder="Отчество" name="patronymic" id="patronymic" autocomplete="off">
                     <label class="login-field-icon fui-user" for="patronymic"></label>
                 </div>
                 <div class="control-group" data-provide="datepicker">
-                    <input type="text" class="login-field" placeholder="дд-мм-гггг" name="birthday" id="birthday" autofocus autocomplete="off">
+                    <input type="text" class="login-field" placeholder="дд-мм-гггг" name="birthday" id="birthday" autocomplete="off">
                     <label class="login-field-icon fui-user" for="birthday"></label>
                 </div>
                 <div class="control-group">
@@ -43,7 +43,7 @@
                     <label class="login-field-icon fui-user" for="phone"></label>
                 </div>
                 <div class="control-group">
-                    <input type="password" class="login-field" placeholder="Пароль доступа" name="secret_pass" id="secret_pass" autofocus>
+                    <input type="password" class="login-field" placeholder="Пароль доступа" name="secret_pass" id="secret_pass" >
                     <label class="login-field-icon fui-user" for="secret_pass"></label>
                 </div>
                 <div class="select-width">                    
