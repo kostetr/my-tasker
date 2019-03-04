@@ -47,7 +47,7 @@
                     <label class="login-field-icon fui-user" for="secret_pass"></label>
                 </div>
                 <div class="select-width">                    
-                    <select name="gender_id" class="form-control">
+                    <select name="gender_id" class="form-control" id="gender_id">
                         <option disabled selected>Пол</option>
                         <?php foreach ($this->gender as $gender_item): ?>  
                             <option value="<?= $gender_item['id'] ?>"><?= $gender_item['name'] ?></option>
@@ -55,7 +55,7 @@
                     </select>
                 </div>
                 <div class="select-width">                    
-                    <select name="post_id" class="form-control">
+                    <select name="post_id" class="form-control" id="post_id">
                         <option disabled selected>Должность</option>
                         <?php foreach ($this->posts as $post_item): ?>  
                             <option value="<?= $post_item['id'] ?>"><?= $post_item['name'] ?></option>
