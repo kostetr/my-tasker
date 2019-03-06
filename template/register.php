@@ -62,7 +62,7 @@
                         <?php endforeach ?>
                     </select>
                 </div>
-                <input type="submit" class="btn btn-primary btn-large btn-block" value="Зарегистрироваться"/>
+                <input type="submit" id="submit" class="btn btn-primary btn-large btn-block" value="Зарегистрироваться" disabled/>
                 <a class="login-link" href="/auth">Уже зарегистрированы? Войти.</a>
             </div>
         </div>
