@@ -14,7 +14,7 @@ $(document).ready(function () {
         'post_id': false
     };
     /*
-     * проверка массива
+     * проверка массива. если 12шт. = true то удаляет атребут disabled у кнопки. Если  false то добавляет.
      */
     function arrayСheck() {
         var result = 0;

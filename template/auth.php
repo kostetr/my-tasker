@@ -4,6 +4,7 @@
             <div class="app-title">
                 <h1>Авторизация</h1>
             </div>
+            <div class="alert alert-danger" role="alert">Ошибка авторизации</div>
             <div class="login-form">
                 <div class="control-group">
                     <input type="text" class="login-field" value="" placeholder="Логин" name="login" id="login-name" autofocus/>

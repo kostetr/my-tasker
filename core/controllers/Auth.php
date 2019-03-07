@@ -31,17 +31,18 @@ class Auth extends AbstractController {
     //Регистрация
     public function action_adduser() {
         $user = filter_input_array(INPUT_POST);
-
         if ($this->user_validate($user)) {
             $user['password'] = password_hash($user['password'], PASSWORD_DEFAULT);
             $this->model->table = 'users';
             $user['group_id'] = $this->model->group_id;
             $birthday = explode('-', $user['birthday']);
-            $user['birthday'] =$birthday[2].'-'.$birthday[1].'-'.$birthday[0];
-            $user['registered'] = date('Y-m-d');            
+            $user['birthday'] = $birthday[2] . '-' . $birthday[1] . '-' . $birthday[0];
+            $user['registered'] = date('Y-m-d');
             $this->model->addUser($user);
+            Router::redirect('auth/');
+            exit();
         }
-        Router::redirect('auth/');
+        Router::redirect('auth/register');
     }
 
     //Авторизация
@@ -53,12 +54,12 @@ class Auth extends AbstractController {
 
         if ($user_item) {
             if (password_verify($user['password'], $user_item->password)) {
-                $_SESSION['id'] = $user_item->id;                
-                $_SESSION['id_doc'] = $user_item->id_doc;                
+                $_SESSION['id'] = $user_item->id;
+                $_SESSION['id_doc'] = $user_item->id_doc;
                 $_SESSION['login'] = $user_item->login;
                 $_SESSION['surename'] = $user_item->surename;
                 $_SESSION['name'] = $user_item->name;
-                $_SESSION['patronymic'] = $user_item->patronymic;                
+                $_SESSION['patronymic'] = $user_item->patronymic;
                 Router::redirect('tasks/');
             } else {
                 Router::redirect('auth/');
