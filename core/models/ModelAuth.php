@@ -26,4 +26,13 @@ class ModelAuth extends AbstractModel {
         }
     }
 
+    public function selectAllLogins() {
+        $query = "SELECT login FROM users";
+        $result = $this->db->query($query);
+        if ($result) {
+            return $result->fetch_all(MYSQLI_NUM);
+       }
+        return false;
+    }
+
 }

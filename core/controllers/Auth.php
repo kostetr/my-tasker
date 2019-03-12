@@ -24,6 +24,7 @@ class Auth extends AbstractController {
         $this->viewer->gender = $this->model->all();
         $this->model->table = 'posts';
         $this->viewer->posts = $this->model->all();
+        $this->viewer->logins = $this->model->selectAllLogins();
         $this->viewer->content_view = "register.php";
         $this->viewer->show();
     }

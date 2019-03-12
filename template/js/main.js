@@ -13,6 +13,9 @@ $(document).ready(function () {
         'gender_id': false,
         'post_id': false
     };
+
+
+
     /*
      * проверка массива. если 12шт. = true то удаляет атребут disabled у кнопки. Если  false то добавляет.
      */
@@ -65,10 +68,18 @@ $(document).ready(function () {
         }
     });
     $("#login").change(function () {
+
         if ($("#login").val().length < 5) {
             fieldColor(0, 'login');
         } else {
             fieldColor(1, 'login');
+            for (var key in logins) {
+                if ($("#login").val() == logins[key]) {
+                    $("#login").
+                    alert("Такой логинсуществует");
+                    fieldColor(0, 'login');
+                }
+            }            
         }
     });
     $("#pass").change(function () {

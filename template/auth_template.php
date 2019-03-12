@@ -88,8 +88,67 @@
                 display: block;
                 margin-top: 12px;
             }
+            /*подсказки*/
+            .tooltip:before,
+            .tooltip:after {
+                display: block;
+                position: absolute;
+                visibility: hidden;
+                opacity: 0; 
+                margin-bottom: 15px;
+                transition: opacity .7s, margin-bottom .7s;
+                left: 50%;
+            }
+
+            .tooltip {
+                color: #1f8b8a;
+                border-bottom: 1px dashed #1f8b8a;
+                position: relative;
+                cursor: pointer;
+
+            }
+
+            .tooltip:before {
+                bottom: 30px;
+                left: 50%;
+                padding: 10px;
+                width: 200px;
+                margin-left: -100px;
+                color: white;
+                background-color: rgba(0,0,0,.85);
+                content: attr(data-title);
+                border-radius: 5px;
+                box-shadow: border-box;
+                text-align: center;
+            }
+
+            .tooltip:after {
+                content: "";
+                border-top: 10px solid rgba(0,0,0,.85);
+                border-left: 10px solid transparent;
+                border-right: 10px solid transparent;
+                bottom: 20px;
+                margin-left: -10px;
+            }
+
+            .tooltip:hover:before,
+            .tooltip:hover:after {
+                opacity: 1;
+                margin-bottom: 0;
+                visibility: visible;
+            }
+            .block {
+                width: 400px;
+                height: 150px;
+                margin: auto;
+                position: absolute;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                right: 0;
+            }
         </style>
-        
+
 
     </head>
     <body>
