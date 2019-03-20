@@ -22,7 +22,7 @@
                 margin: 20px auto;
                 width: 300px;
             }
-            .login-screen {
+            .login-screen {                
                 background-color: #FFF;
                 padding: 20px;
                 border-radius: 5px
@@ -88,64 +88,25 @@
                 display: block;
                 margin-top: 12px;
             }
-            /*подсказки*/
-            .tooltip:before,
-            .tooltip:after {
-                display: block;
-                position: absolute;
-                visibility: hidden;
-                opacity: 0; 
-                margin-bottom: 15px;
-                transition: opacity .7s, margin-bottom .7s;
-                left: 50%;
-            }
-
-            .tooltip {
-                color: #1f8b8a;
-                border-bottom: 1px dashed #1f8b8a;
+            /*
+            sdfsdf
+            */
+            .input-wrapper {
+                display: inline-block;
                 position: relative;
-                cursor: pointer;
-
             }
-
-            .tooltip:before {
-                bottom: 30px;
-                left: 50%;
-                padding: 10px;
-                width: 200px;
-                margin-left: -100px;
-                color: white;
-                background-color: rgba(0,0,0,.85);
+            .input-wrapper:hover:after {
                 content: attr(data-title);
-                border-radius: 5px;
-                box-shadow: border-box;
-                text-align: center;
-            }
-
-            .tooltip:after {
-                content: "";
-                border-top: 10px solid rgba(0,0,0,.85);
-                border-left: 10px solid transparent;
-                border-right: 10px solid transparent;
-                bottom: 20px;
-                margin-left: -10px;
-            }
-
-            .tooltip:hover:before,
-            .tooltip:hover:after {
-                opacity: 1;
-                margin-bottom: 0;
-                visibility: visible;
-            }
-            .block {
-                width: 400px;
-                height: 150px;
-                margin: auto;
                 position: absolute;
-                top: 0;
-                left: 0;
-                bottom: 0;
-                right: 0;
+                left: 90%; top: 50%;
+                z-index: 1;
+                background: #ffffcc;
+                font-size: 11px;
+                padding: 5px 10px;
+                border: 1px solid #000;
+                box-shadow: 5px 5px 8px 0px rgba(119, 119, 119, 0.64);
+                -moz-box-shadow: 5px 5px 8px 0px rgba(119, 119, 119, 0.64);
+                -webkit-box-shadow: 5px 5px 8px 0px rgba(119, 119, 119, 0.64);
             }
         </style>
 

@@ -10,10 +10,10 @@
                     <input type="text" class="login-field" placeholder="Табельный" name="id_doc" id="id-doc" autocomplete="off" pattern="[0-9]{,5" required autofocus>
                     <label class="login-field-icon fui-user" for="id_doc"></label>                    
                 </div>
-                <div class="control-group">
-                    <input type="text" class="login-field " data-title="Something comment is here!" placeholder="Логин" name="login" id="login" autocomplete="off" required>
+                <div class="control-group input-wrapper">
+                    <input type="text" class="login-field " data-description="I'm a tooltip!" placeholder="Логин" name="login" id="login" autocomplete="off">
                     <label class="login-field-icon fui-user" for="login"></label>
-                    <p class="block">Lorem ipsum <span class="tooltip" data-title="Something comment is here!">dolor</span> sit amet, consectetur adipisicing elit. Quasi, vel molestias dignissimos eaque praesentium earum quaerat vero adipisci, debitis omnis non nam facilis <span class="tooltip" data-title="Another tooltip is here!">voluptate</span> possimus? <span class="tooltip" data-title="Something comment is here!">Nostrum</span> minima, porro quisquam est.</p>
+                   
                 </div>                
                 <div class="control-group">
                     <input type="password" class="login-field" placeholder="Пароль" name="password" id="pass" required>
