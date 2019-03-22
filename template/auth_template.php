@@ -88,26 +88,7 @@
                 display: block;
                 margin-top: 12px;
             }
-            /*
-            sdfsdf
-            */
-            .input-wrapper {
-                display: inline-block;
-                position: relative;
-            }
-            .input-wrapper:hover:after {
-                content: attr(data-title);
-                position: absolute;
-                left: 90%; top: 50%;
-                z-index: 1;
-                background: #ffffcc;
-                font-size: 11px;
-                padding: 5px 10px;
-                border: 1px solid #000;
-                box-shadow: 5px 5px 8px 0px rgba(119, 119, 119, 0.64);
-                -moz-box-shadow: 5px 5px 8px 0px rgba(119, 119, 119, 0.64);
-                -webkit-box-shadow: 5px 5px 8px 0px rgba(119, 119, 119, 0.64);
-            }
+
         </style>
 
 
@@ -120,6 +101,8 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
         <script src="<?= \core\Router::root() ?>/template/js/bootstrap.min.js" type="text/javascript"></script>
         <script src="<?= \core\Router::root() ?>/template/js/jquery.maskedinput.min.js" type="text/javascript"></script>
+        <script src="<?= \core\Router::root() ?>/template/js/jquery-validate.bootstrap-tooltip.min.js" type="text/javascript"></script>
         <script src="<?= \core\Router::root() ?>/template/js/main.js" type="text/javascript"></script>
+
     </body>
 </html>

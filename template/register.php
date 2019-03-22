@@ -1,4 +1,4 @@
-<form method="post" action="adduser">
+<form method="post" action="adduser" id="registerForm">
     <div class="login">
         <div class="login-screen">
             <div class="app-title">
@@ -11,7 +11,7 @@
                     <label class="login-field-icon fui-user" for="id_doc"></label>                    
                 </div>
                 <div class="control-group input-wrapper">
-                    <input type="text" class="login-field " data-description="I'm a tooltip!" placeholder="Логин" name="login" id="login" autocomplete="off">
+                    <input type="text" class="login-field " placeholder="Логин" name="login" id="login" autocomplete="off">
                     <label class="login-field-icon fui-user" for="login"></label>
                    
                 </div>                
@@ -63,7 +63,7 @@
                         <?php endforeach ?>
                     </select>
                 </div>
-                <input type="submit" id="submit" class="btn btn-primary btn-large btn-block" value="Зарегистрироваться" disabled/>
+                <input type="submit" id="submit" class="btn btn-primary btn-large btn-block" value="Зарегистрироваться" />
                 <a class="login-link" href="/auth">Уже зарегистрированы? Войти.</a>
             </div>
         </div>
