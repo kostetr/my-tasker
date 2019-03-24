@@ -19,12 +19,14 @@ class Auth extends AbstractController {
         $this->viewer->show();
     }
 
-    public function action_register() {
+    public function action_register($user=null,$arrayErrors=null) {        
         $this->model->table = 'gender';
         $this->viewer->gender = $this->model->all();
         $this->model->table = 'posts';
         $this->viewer->posts = $this->model->all();
         $this->viewer->logins = $this->model->selectAllLogins();
+        $this->viewer->arrayErrors = $arrayErrors;
+        $this->viewer->user = $user;
         $this->viewer->content_view = "register.php";
         $this->viewer->show();
     }
@@ -32,7 +34,8 @@ class Auth extends AbstractController {
     //Регистрация
     public function action_adduser() {
         $user = filter_input_array(INPUT_POST);
-        if ($this->user_validate($user)) {
+        $this->model->arrayErrors = $this->user_validate($user);
+        if (count($this->model->arrayErrors) == 0) {
             $user['password'] = password_hash($user['password'], PASSWORD_DEFAULT);
             $this->model->table = 'users';
             $user['group_id'] = $this->model->group_id;
@@ -41,9 +44,9 @@ class Auth extends AbstractController {
             $user['registered'] = date('Y-m-d');
             $this->model->addUser($user);
             Router::redirect('auth/');
-            exit();
+        } else {
+            $this->action_register($user, $this->model->arrayErrors);            
         }
-        Router::redirect('auth/register');
     }
 
     //Авторизация
@@ -72,22 +75,25 @@ class Auth extends AbstractController {
 
     //Проверки
     private function user_validate(array $user) {
+        $arrayErrors = array();
         if ($user['password'] !== $user['password_confirm']) {
-            return false;
+            array_push($arrayErrors, 'Пароли не совпадают');
         }
         $user_item = $this->model->selectByName($user['login']);
         if ($user_item) {
-            return false;
+            array_push($arrayErrors, 'Пользователь с таким логином существует');
         }
         $this->model->table = 'groups';
         $registration_priority = $this->model->all();
         foreach ($registration_priority as $value) {
             if ($value['secret_pass'] === $user['secret_pass']) {
                 $this->model->group_id = $value['id'];
-                return true;
             }
         }
-        return false;
+        if ($this->model->group_id == null) {
+            array_push($arrayErrors, 'Неправильный пароль доступа');
+        }
+        return $arrayErrors;
     }
 
     static public function getAuthLogin() {
