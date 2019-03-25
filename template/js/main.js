@@ -13,6 +13,20 @@ $(document).ready(function () {
         'gender_id': false,
         'post_id': false
     };
+    /*
+     * ПРоверка на существование значения полей регистрации. 
+     */
+        if (  $("#id-doc").val().length !="" && $("#login").val().length !="" &&  $("#surname").val().length !="" && $("#name").val().length !="" && $("#patronymic").val().length !="" && $("#birthday").val().length !="" && $("#phone").val().length !="" && $("#gender_id").val().length !="" && $("#post_id").val().length !="") {
+        fieldColor(1, 'id-doc');
+        fieldColor(1, 'login');
+        fieldColor(1, 'surname');
+        fieldColor(1, 'name');
+        fieldColor(1, 'patronymic');
+        fieldColor(1, 'birthday');
+        fieldColor(1, 'phone');
+        fieldColor(1, 'gender_id');
+        fieldColor(1, 'post_id');
+    }
 
 
     /*
@@ -57,6 +71,7 @@ $(document).ready(function () {
             arrayСheck();
         }
     }
+
 
     $("#id-doc").mask("99999");
     $("#id-doc").change(function () {
