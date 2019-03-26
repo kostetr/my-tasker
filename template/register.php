@@ -10,7 +10,7 @@
                 <h1>Регистрация</h1>
             </div>
             <?php if ($this->arrayErrors !== null): ?>
-                <div class="alert alert-danger" role="alert">Ошибки:
+                <div class="alert alert-danger alert-registr" role="alert">Ошибки:
                     <?php foreach ($this->arrayErrors as $error_item): ?>
                         <p><?= $error_item ?></p>
                     <?php endforeach ?>

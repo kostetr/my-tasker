@@ -79,6 +79,10 @@ class Auth extends AbstractController {
         if ($user['password'] !== $user['password_confirm']) {
             $arrayErrors['passError']='Пароли не совпадают';
         }
+        $user_id_doc = $this->model->selectByID($user['id_doc']);
+        if ($user_id_doc) {
+            $arrayErrors['idDocError']='Пользователь с таким id уже существует';
+        }
         $user_item = $this->model->selectByName($user['login']);
         if ($user_item) {
             $arrayErrors['loginError']='Пользователь с таким логином существует';

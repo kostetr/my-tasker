@@ -88,7 +88,10 @@
                 display: block;
                 margin-top: 12px;
             }
-
+            .alert-registr {
+                font-size: 12px;
+                width: 250px;
+            }
         </style>
 
 

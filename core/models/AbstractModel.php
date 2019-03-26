@@ -40,5 +40,13 @@ abstract class AbstractModel {
         }
         return false;
     }
+    public function selectByID($id_doc) {
+        $query = "SELECT * FROM " . $this->table . " WHERE id_doc='" . $id_doc . "' LIMIT 1";
+        $result = $this->db->query($query);
+        if ($result) {
+            return $result->fetch_object();
+        }
+        return false;
+    }
 
 }
