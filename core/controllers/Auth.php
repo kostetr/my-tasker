@@ -19,7 +19,7 @@ class Auth extends AbstractController {
         $this->viewer->show();
     }
 
-    public function action_register($user=null,$arrayErrors=null) {        
+    public function action_register($user = null, $arrayErrors = null) {
         $this->model->table = 'gender';
         $this->viewer->gender = $this->model->all();
         $this->model->table = 'posts';
@@ -45,7 +45,7 @@ class Auth extends AbstractController {
             $this->model->addUser($user);
             Router::redirect('auth/');
         } else {
-            $this->action_register($user, $this->model->arrayErrors);            
+            $this->action_register($user, $this->model->arrayErrors);
         }
     }
 
@@ -77,11 +77,11 @@ class Auth extends AbstractController {
     private function user_validate(array $user) {
         $arrayErrors = array();
         if ($user['password'] !== $user['password_confirm']) {
-            array_push($arrayErrors, 'Пароли не совпадают');
+            $arrayErrors['passError']='Пароли не совпадают';
         }
         $user_item = $this->model->selectByName($user['login']);
         if ($user_item) {
-            array_push($arrayErrors, 'Пользователь с таким логином существует');
+            $arrayErrors['loginError']='Пользователь с таким логином существует';
         }
         $this->model->table = 'groups';
         $registration_priority = $this->model->all();
@@ -91,7 +91,7 @@ class Auth extends AbstractController {
             }
         }
         if ($this->model->group_id == null) {
-            array_push($arrayErrors, 'Неправильный пароль доступа');
+            $arrayErrors['secretPassError']='Неправильный пароль доступа';
         }
         return $arrayErrors;
     }

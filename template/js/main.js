@@ -16,7 +16,7 @@ $(document).ready(function () {
     /*
      * ПРоверка на существование значения полей регистрации. 
      */
-        if (  $("#id-doc").val().length !="" && $("#login").val().length !="" &&  $("#surname").val().length !="" && $("#name").val().length !="" && $("#patronymic").val().length !="" && $("#birthday").val().length !="" && $("#phone").val().length !="" && $("#gender_id").val().length !="" && $("#post_id").val().length !="") {
+    if ($("#id-doc").val().length != "" && $("#login").val().length != "" && $("#surname").val().length != "" && $("#name").val().length != "" && $("#patronymic").val().length != "" && $("#birthday").val().length != "" && $("#phone").val().length != "" && $("#gender_id").val().length != "" && $("#post_id").val().length != "") {
         fieldColor(1, 'id-doc');
         fieldColor(1, 'login');
         fieldColor(1, 'surname');
@@ -26,6 +26,17 @@ $(document).ready(function () {
         fieldColor(1, 'phone');
         fieldColor(1, 'gender_id');
         fieldColor(1, 'post_id');
+    }
+
+    if (passError.length !== 0) {
+        fieldColor(0, 'pass');
+        fieldColor(0, 'pass-confirm');
+    }
+    if (loginError.length !== 0) {
+        fieldColor(0, 'login');
+    }
+    if (secretPassError.length !== 0) {
+        fieldColor(0, 'secret_pass');
     }
 
 

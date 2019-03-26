@@ -1,3 +1,8 @@
+<script>
+    var passError = "<?php echo $this->arrayErrors['passError'] ?>";
+    var loginError = "<?php echo $this->arrayErrors['loginError'] ?>";
+    var secretPassError = "<?php echo $this->arrayErrors['secretPassError'] ?>";
+</script>
 <form method="post" action="adduser" id="registerForm">
     <div class="login">
         <div class="login-screen">
@@ -10,24 +15,6 @@
                         <p><?= $error_item ?></p>
                     <?php endforeach ?>
                 </div>
-              <!--  <? $this->user['id_doc'] ?>
-                value="<? $this->user['login'] ?>"
-                value="<? $this->user['surname'] ?>"
-                value="<? $this->user['name'] ?>"
-                value="<? $this->user['patronymic'] ?>"
-                value="<? $this->user['birthday'] ?>"
-                value="<? $this->user['phone'] ?>"
-                value="<? $this->user['gender_id'] ?>"
-                value="<? $this->user['post_id'] ?>"
-                id_doc
-                login
-                surname
-                name
-                patronymic
-                birthday
-                phone
-                gender_id
-                post_id-->
 
                 <div class="login-form">
                     <div class="control-group">
@@ -95,7 +82,7 @@
                             <?php endforeach ?>
                         </select>
                     </div>
-                    <input type="submit" id="submit" class="btn btn-primary btn-large btn-block" value="Зарегистрироваться" />
+                    <input type="submit" id="submit" class="btn btn-primary btn-large btn-block" value="Зарегистрироваться" disabled />
                     <a class="login-link" href="/auth">Уже зарегистрированы? Войти.</a>
                 </div>
             <?php else: ?>
@@ -157,7 +144,7 @@
                             <?php endforeach ?>
                         </select>
                     </div>
-                    <input type="submit" id="submit" class="btn btn-primary btn-large btn-block" value="Зарегистрироваться" />
+                    <input type="submit" id="submit" class="btn btn-primary btn-large btn-block" value="Зарегистрироваться" disabled />
                     <a class="login-link" href="/auth">Уже зарегистрированы? Войти.</a>
                 </div>
 
