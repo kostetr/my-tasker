@@ -2,6 +2,7 @@
     var passError = "<?php echo $this->arrayErrors['passError'] ?>";
     var loginError = "<?php echo $this->arrayErrors['loginError'] ?>";
     var secretPassError = "<?php echo $this->arrayErrors['secretPassError'] ?>";
+    var idDocError = "<?php echo $this->arrayErrors['idDocError'] ?>";
 </script>
 <form method="post" action="adduser" id="registerForm">
     <div class="login">

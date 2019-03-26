@@ -14,7 +14,9 @@ class Auth extends AbstractController {
         $this->viewer->template = "auth_template.php";
     }
 
-    public function action_index() {
+    public function action_index($arrayErrors = null) {
+        $this->viewer->arrayErrors = $arrayErrors;
+        $this->viewer->registerMessage = $this->model->registerMessage;
         $this->viewer->content_view = "auth.php";
         $this->viewer->show();
     }
@@ -26,7 +28,7 @@ class Auth extends AbstractController {
         $this->viewer->posts = $this->model->all();
         $this->viewer->logins = $this->model->selectAllLogins();
         $this->viewer->arrayErrors = $arrayErrors;
-        $this->viewer->user = $user;
+        $this->viewer->user = $user;        
         $this->viewer->content_view = "register.php";
         $this->viewer->show();
     }
@@ -43,6 +45,7 @@ class Auth extends AbstractController {
             $user['birthday'] = $birthday[2] . '-' . $birthday[1] . '-' . $birthday[0];
             $user['registered'] = date('Y-m-d');
             $this->model->addUser($user);
+            $this->model->registerMessage = 'Регистрация завершина успешно!';
             Router::redirect('auth/');
         } else {
             $this->action_register($user, $this->model->arrayErrors);
@@ -51,11 +54,10 @@ class Auth extends AbstractController {
 
     //Авторизация
     public function action_signin() {
+        $arrayErrors = array();
         $user = filter_input_array(INPUT_POST);
         $user_login = $user['login'];
-
         $user_item = $this->model->selectByName($user_login);
-
         if ($user_item) {
             if (password_verify($user['password'], $user_item->password)) {
                 $_SESSION['id'] = $user_item->id;
@@ -66,26 +68,27 @@ class Auth extends AbstractController {
                 $_SESSION['patronymic'] = $user_item->patronymic;
                 Router::redirect('tasks/');
             } else {
-                Router::redirect('auth/');
+                $arrayErrors['authError'] = 'Вы ввели неверный пароль!';
             }
         } else {
-            Router::redirect('auth/');
+            $arrayErrors['authError'] = 'Вы ввели неверный пароль!';
         }
+        $this->action_index($arrayErrors);
     }
 
     //Проверки
     private function user_validate(array $user) {
         $arrayErrors = array();
         if ($user['password'] !== $user['password_confirm']) {
-            $arrayErrors['passError']='Пароли не совпадают';
+            $arrayErrors['passError'] = 'Пароли не совпадают';
         }
         $user_id_doc = $this->model->selectByID($user['id_doc']);
         if ($user_id_doc) {
-            $arrayErrors['idDocError']='Пользователь с таким id уже существует';
+            $arrayErrors['idDocError'] = 'Пользователь с таким id уже существует';
         }
         $user_item = $this->model->selectByName($user['login']);
         if ($user_item) {
-            $arrayErrors['loginError']='Пользователь с таким логином существует';
+            $arrayErrors['loginError'] = 'Пользователь с таким логином существует';
         }
         $this->model->table = 'groups';
         $registration_priority = $this->model->all();
@@ -95,7 +98,7 @@ class Auth extends AbstractController {
             }
         }
         if ($this->model->group_id == null) {
-            $arrayErrors['secretPassError']='Неправильный пароль доступа';
+            $arrayErrors['secretPassError'] = 'Неправильный пароль доступа';
         }
         return $arrayErrors;
     }

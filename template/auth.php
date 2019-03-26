@@ -4,8 +4,19 @@
             <div class="app-title">
                 <h1>Авторизация</h1>
             </div>
-            
-            <div class="login-form">
+            <?php if ($this->arrayErrors !== null): ?>
+                <div class="alert alert-danger alert-registr" role="alert">Ошибки:
+                    <?php foreach ($this->arrayErrors as $error_item): ?>
+                        <p><?= $error_item ?></p>
+                    <?php endforeach ?>
+                </div>
+            <?php endif ?>
+            <?php if ($this->registerMessage !== null && $this->arrayErrors == nul): ?>
+                <div class="alert alert-success alert-registr" role="alert">
+                    <p>Регистрация завершина успешно!</p>
+                </div>
+            <?php endif ?>
+                        <div class="login-form">
                 <div class="control-group">
                     <input type="text" class="login-field" value="" placeholder="Логин" name="login" id="login-name" autofocus/>
                     <label class="login-field-icon fui-user" for="login-name"></label>

@@ -27,7 +27,9 @@ $(document).ready(function () {
         fieldColor(1, 'gender_id');
         fieldColor(1, 'post_id');
     }
-
+/*
+ * Проверки типов ошибок. Поле с ошибкой будет отмечено.
+ */
     if (passError.length !== 0) {
         fieldColor(0, 'pass');
         fieldColor(0, 'pass-confirm');
@@ -37,6 +39,9 @@ $(document).ready(function () {
     }
     if (secretPassError.length !== 0) {
         fieldColor(0, 'secret_pass');
+    }
+    if (idDocError.length !== 0) {
+        fieldColor(0, 'id-doc');
     }
 
 
