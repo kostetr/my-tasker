@@ -15,15 +15,17 @@ class Auth extends AbstractController {
     }
 
     public function action_index() {
-        $_SESSION['passError'] = null;
-        $_SESSION['loginError'] = null;
-        $_SESSION['secretPassError'] = null;
-        $_SESSION['idDocError'] = null;
+        $_SESSION['Errors']['idDoc']= null;
+        $_SESSION['Errors']['pass']= null;
+        $_SESSION['Errors']['login']= null;
+        $_SESSION['Errors']['secretPass']= null;       
         $this->viewer->content_view = "auth.php";
         $this->viewer->show();
+        
     }
 
     public function action_register() {
+        $_SESSION['Errors']['auth']=null;
         $this->model->table = 'gender';
         $this->viewer->gender = $this->model->all();
         $this->model->table = 'posts';
@@ -42,12 +44,13 @@ class Auth extends AbstractController {
             $birthday = explode('-', $user['birthday']);
             $user['birthday'] = $birthday[2] . '-' . $birthday[1] . '-' . $birthday[0];
             $user['registered'] = date('Y-m-d');
-            $this->model->addUser($user);
-            Router::redirect('auth/');
-        } else {
-            $_SESSION['user']=$user;
-            Router::redirect('auth/register');
+            if ($this->model->addUser($user)) {
+                $_SESSION['message']['succesRegistr'] = 'Успешная регистрация!';
+                Router::redirect('auth/');
+            }
         }
+        $_SESSION['user'] = $user;
+        Router::redirect('auth/register');
     }
 
 //Авторизация
@@ -65,32 +68,33 @@ class Auth extends AbstractController {
                 $_SESSION['authError'] = null;
                 Router::redirect('tasks/');
             } else {
-                $_SESSION['authError'] = 'Вы ввели неверный пароль!';
+                $_SESSION['Errors']['auth'] = 'Вы ввели неверный пароль!';
             }
         } else {
-            $_SESSION['authError'] = 'Вы ввели неверный пароль!';
+            $_SESSION['Errors']['auth'] = 'Вы ввели неверный пароль!';
         }
         Router::redirect('auth/');
     }
 
+        
 //Проверки
     private function user_validate(array $user) {
         if ($user['password'] !== $user['password_confirm']) {
-            $_SESSION['passError'] = 'Пароли не совпадают';
+            $_SESSION['Errors']['pass'] = 'Пароли не совпадают';
         } else {
-            $_SESSION['passError'] = null;
+            $_SESSION['Errors']['pass'] = null;
         }
         $user_id_doc = $this->model->selectByID($user['id_doc']);
         if ($user_id_doc) {
-            $_SESSION['idDocError'] = 'Пользователь с таким id уже существует';
+            $_SESSION['Errors']['idDoc'] = 'Пользователь с таким id уже существует';
         } else {
-            $_SESSION['idDocError'] = null;
+            $_SESSION['Errors']['idDoc'] = null;
         }
         $user_item = $this->model->selectByName($user['login']);
         if ($user_item) {
-            $_SESSION['loginError'] = 'Пользователь с таким логином существует';
+            $_SESSION['Errors']['login'] = 'Пользователь с таким логином существует';
         } else {
-            $_SESSION['loginError'] = null;
+            $_SESSION['Errors']['login'] = null;
         }
         $this->model->table = 'groups';
         $registration_priority = $this->model->all();
@@ -100,15 +104,16 @@ class Auth extends AbstractController {
             }
         }
         if ($this->model->group_id == null) {
-            $_SESSION['secretPassError'] = 'Неправильный пароль доступа';
+            $_SESSION['Errors']['secretPass'] = 'Неправильный пароль доступа';
         } else {
-            $_SESSION['secretPassError'] = null;
+            $_SESSION['Errors']['secretPass'] = null;
         }
-        if ($_SESSION['passError'] !== null || $_SESSION['idDocError'] !== null || $_SESSION['loginError'] !== null || $_SESSION['secretPassError'] !== null) {
+        if ($_SESSION['Errors']['pass'] !== null || $_SESSION['Errors']['idDoc'] !== null || $_SESSION['Errors']['login'] !== null || $_SESSION['Errors']['secretPass'] !== null) {
             return FALSE;
         } else {
             return true;
         }
+        
     }
 
     static public function getAuthLogin() {

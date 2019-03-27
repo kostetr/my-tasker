@@ -4,14 +4,12 @@
             <div class="app-title">
                 <h1>Авторизация</h1>
             </div>
-            <?php if ($this->arrayErrors !== null): ?>
-                <div class="alert alert-danger alert-registr" role="alert">Ошибки:
-                    <?php foreach ($this->arrayErrors as $error_item): ?>
-                        <p><?= $error_item ?></p>
-                    <?php endforeach ?>
+            <?php if ($_SESSION['Errors']['auth'] !== null): ?>
+                <div class="alert alert-danger alert-registr" role="alert">Ошибка:                    
+                        <p><?= $_SESSION['Errors']['auth'] ?></p>                    
                 </div>
             <?php endif ?>
-            <?php if ($this->registerMessage !== null && $this->arrayErrors == null): ?>
+            <?php if ( $_SESSION['message']['succesRegistr'] !== null && $_SESSION['Errors']['auth'] == null): ?>
                 <div class="alert alert-success alert-registr" role="alert">
                     <p>Регистрация завершина успешно!</p>
                 </div>

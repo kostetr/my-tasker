@@ -1,8 +1,8 @@
 <script>
-    var passError = "<?php echo $_SESSION['passError'] ?>";
-    var loginError = "<?php echo $_SESSION['loginError'] ?>";
-    var secretPassError = "<?php echo $_SESSION['secretPassError'] ?>";
-    var idDocError = "<?php echo $_SESSION['idDocError'] ?>";
+    var passError = "<?php echo $_SESSION['Errors']['pass'] ?>";
+    var loginError = "<?php echo $_SESSION['Errors']['login'] ?>";
+    var secretPassError = "<?php echo $_SESSION['Errors']['secretPass'] ?>";
+    var idDocError = "<?php echo $_SESSION['Errors']['idDoc'] ?>";
 </script>
 <form method="post" action="adduser" id="registerForm">
     <div class="login">
@@ -10,13 +10,11 @@
             <div class="app-title">
                 <h1>Регистрация</h1>
             </div>
-            <?php if ($_SESSION['passError'] !== null || $_SESSION['loginError'] !== null || $_SESSION['secretPassError'] !== null || $_SESSION['idDocError'] !== null): ?>
+            <?php if ($_SESSION['Errors']['pass'] !== null || $_SESSION['Errors']['idDoc'] !== null || $_SESSION['Errors']['login'] !== null || $_SESSION['Errors']['secretPass'] !== null): ?>
                 <div class="alert alert-danger alert-registr" role="alert">Ошибки:
-                    <p><?= $_SESSION['passError'] ?></p>
-                    <p><?= $_SESSION['loginError'] ?></p>
-                    <p><?= $_SESSION['secretPassError'] ?></p>
-                    <p><?= $_SESSION['idDocError'] ?></p>                  
-
+                    <?php foreach ($_SESSION['Errors'] as $error_item): ?>
+                    <p><?= $error_item ?></p>
+                    <?php endforeach ?>
                 </div>
 
                 <div class="login-form">
