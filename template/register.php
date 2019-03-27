@@ -1,8 +1,8 @@
 <script>
-    var passError = "<?php echo $this->arrayErrors['passError'] ?>";
-    var loginError = "<?php echo $this->arrayErrors['loginError'] ?>";
-    var secretPassError = "<?php echo $this->arrayErrors['secretPassError'] ?>";
-    var idDocError = "<?php echo $this->arrayErrors['idDocError'] ?>";
+    var passError = "<?php echo $_SESSION['passError'] ?>";
+    var loginError = "<?php echo $_SESSION['loginError'] ?>";
+    var secretPassError = "<?php echo $_SESSION['secretPassError'] ?>";
+    var idDocError = "<?php echo $_SESSION['idDocError'] ?>";
 </script>
 <form method="post" action="adduser" id="registerForm">
     <div class="login">
@@ -10,20 +10,22 @@
             <div class="app-title">
                 <h1>Регистрация</h1>
             </div>
-            <?php if ($this->arrayErrors !== null): ?>
+            <?php if ($_SESSION['passError'] !== null || $_SESSION['loginError'] !== null || $_SESSION['secretPassError'] !== null || $_SESSION['idDocError'] !== null): ?>
                 <div class="alert alert-danger alert-registr" role="alert">Ошибки:
-                    <?php foreach ($this->arrayErrors as $error_item): ?>
-                        <p><?= $error_item ?></p>
-                    <?php endforeach ?>
+                    <p><?= $_SESSION['passError'] ?></p>
+                    <p><?= $_SESSION['loginError'] ?></p>
+                    <p><?= $_SESSION['secretPassError'] ?></p>
+                    <p><?= $_SESSION['idDocError'] ?></p>                  
+
                 </div>
 
                 <div class="login-form">
                     <div class="control-group">
-                        <input type="text" class="login-field" placeholder="Табельный" name="id_doc" id="id-doc" value="<?= $this->user['id_doc'] ?>" autocomplete="off" pattern="[0-9]{,5" required autofocus>
+                        <input type="text" class="login-field" placeholder="Табельный" name="id_doc" id="id-doc" value="<?=  $_SESSION['user']['id_doc'] ?>" autocomplete="off" pattern="[0-9]{,5" required autofocus>
                         <label class="login-field-icon fui-user" for="id_doc"></label>                    
                     </div>
                     <div class="control-group input-wrapper">
-                        <input type="text" class="login-field " placeholder="Логин" name="login" id="login" value="<?= $this->user['login'] ?>" autocomplete="off">
+                        <input type="text" class="login-field " placeholder="Логин" name="login" id="login" value="<?=  $_SESSION['user']['login'] ?>" autocomplete="off">
                         <label class="login-field-icon fui-user" for="login"></label>
 
                     </div>                
@@ -36,23 +38,23 @@
                         <label class="login-field-icon fui-lock" for="pass-confirm"></label>
                     </div>
                     <div class="control-group">
-                        <input type="text" class="login-field" placeholder="Фамилия" name="surname" id="surname" value="<?= $this->user['surname'] ?>" autocomplete="off" required>
+                        <input type="text" class="login-field" placeholder="Фамилия" name="surname" id="surname" value="<?=  $_SESSION['user']['surname'] ?>" autocomplete="off" required>
                         <label class="login-field-icon fui-user" for="surname"></label>
                     </div>
                     <div class="control-group">
-                        <input type="text" class="login-field" placeholder="Имя" name="name" id="name" value="<?= $this->user['name'] ?>" autocomplete="off" required>
+                        <input type="text" class="login-field" placeholder="Имя" name="name" id="name" value="<?=  $_SESSION['user']['name'] ?>" autocomplete="off" required>
                         <label class="login-field-icon fui-user" for="name"></label>
                     </div>
                     <div class="control-group">
-                        <input type="text" class="login-field" placeholder="Отчество" name="patronymic" id="patronymic" value="<?= $this->user['patronymic'] ?>" autocomplete="off" required>
+                        <input type="text" class="login-field" placeholder="Отчество" name="patronymic" id="patronymic" value="<?=  $_SESSION['user']['patronymic'] ?>" autocomplete="off" required>
                         <label class="login-field-icon fui-user" for="patronymic"></label>
                     </div>
                     <div class="control-group" data-provide="datepicker">
-                        <input type="text" class="login-field" placeholder="дд-мм-гггг" name="birthday" id="birthday" value="<?= $this->user['birthday'] ?>" autocomplete="off" required>
+                        <input type="text" class="login-field" placeholder="дд-мм-гггг" name="birthday" id="birthday" value="<?=  $_SESSION['user']['birthday'] ?>" autocomplete="off" required>
                         <label class="login-field-icon fui-user" for="birthday"></label>
                     </div>
                     <div class="control-group">
-                        <input type="text" class="login-field" placeholder="Телефон" name="phone" id="phone" value="<?= $this->user['phone'] ?>" autocomplete="off" required>
+                        <input type="text" class="login-field" placeholder="Телефон" name="phone" id="phone" value="<?=  $_SESSION['user']['phone'] ?>" autocomplete="off" required>
                         <label class="login-field-icon fui-user" for="phone"></label>
                     </div>
                     <div class="control-group">
@@ -63,7 +65,7 @@
                         <select name="gender_id" class="form-control" id="gender_id" required>
                             <option disabled selected>Пол</option>
                             <?php foreach ($this->gender as $gender_item): ?>  
-                                <?php if ($gender_item['id'] == $this->user['gender_id']): ?>
+                                <?php if ($gender_item['id'] ==  $_SESSION['user']['gender_id']): ?>
                                     <option selected  value="<?= $gender_item['id'] ?>"><?= $gender_item['name'] ?></option>
                                 <?php else: ?>
                                     <option value="<?= $gender_item['id'] ?>"><?= $gender_item['name'] ?></option>
@@ -75,7 +77,7 @@
                         <select name="post_id" class="form-control" id="post_id" required>
                             <option disabled selected>Должность</option>
                             <?php foreach ($this->posts as $post_item): ?> 
-                                <?php if ($post_item['id'] == $this->user['post_id']): ?>
+                                <?php if ($post_item['id'] ==  $_SESSION['user']['post_id']): ?>
                                     <option selected value="<?= $post_item['id'] ?>"><?= $post_item['name'] ?></option>
                                 <?php else: ?>
                                     <option value="<?= $post_item['id'] ?>"><?= $post_item['name'] ?></option>

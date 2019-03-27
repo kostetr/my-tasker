@@ -11,7 +11,7 @@
                     <?php endforeach ?>
                 </div>
             <?php endif ?>
-            <?php if ($this->registerMessage !== null && $this->arrayErrors == nul): ?>
+            <?php if ($this->registerMessage !== null && $this->arrayErrors == null): ?>
                 <div class="alert alert-success alert-registr" role="alert">
                     <p>Регистрация завершина успешно!</p>
                 </div>

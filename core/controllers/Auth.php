@@ -14,30 +14,28 @@ class Auth extends AbstractController {
         $this->viewer->template = "auth_template.php";
     }
 
-    public function action_index($arrayErrors = null) {
-        $this->viewer->arrayErrors = $arrayErrors;
-        $this->viewer->registerMessage = $this->model->registerMessage;
+    public function action_index() {
+        $_SESSION['passError'] = null;
+        $_SESSION['loginError'] = null;
+        $_SESSION['secretPassError'] = null;
+        $_SESSION['idDocError'] = null;
         $this->viewer->content_view = "auth.php";
         $this->viewer->show();
     }
 
-    public function action_register($user = null, $arrayErrors = null) {
+    public function action_register() {
         $this->model->table = 'gender';
         $this->viewer->gender = $this->model->all();
         $this->model->table = 'posts';
         $this->viewer->posts = $this->model->all();
-        $this->viewer->logins = $this->model->selectAllLogins();
-        $this->viewer->arrayErrors = $arrayErrors;
-        $this->viewer->user = $user;        
         $this->viewer->content_view = "register.php";
         $this->viewer->show();
     }
 
-    //Регистрация
+//Регистрация
     public function action_adduser() {
         $user = filter_input_array(INPUT_POST);
-        $this->model->arrayErrors = $this->user_validate($user);
-        if (count($this->model->arrayErrors) == 0) {
+        if ($this->user_validate($user)) {
             $user['password'] = password_hash($user['password'], PASSWORD_DEFAULT);
             $this->model->table = 'users';
             $user['group_id'] = $this->model->group_id;
@@ -45,19 +43,17 @@ class Auth extends AbstractController {
             $user['birthday'] = $birthday[2] . '-' . $birthday[1] . '-' . $birthday[0];
             $user['registered'] = date('Y-m-d');
             $this->model->addUser($user);
-            $this->model->registerMessage = 'Регистрация завершина успешно!';
             Router::redirect('auth/');
         } else {
-            $this->action_register($user, $this->model->arrayErrors);
+            $_SESSION['user']=$user;
+            Router::redirect('auth/register');
         }
     }
 
-    //Авторизация
+//Авторизация
     public function action_signin() {
-        $arrayErrors = array();
         $user = filter_input_array(INPUT_POST);
-        $user_login = $user['login'];
-        $user_item = $this->model->selectByName($user_login);
+        $user_item = $this->model->selectByName($user['login']);
         if ($user_item) {
             if (password_verify($user['password'], $user_item->password)) {
                 $_SESSION['id'] = $user_item->id;
@@ -66,29 +62,35 @@ class Auth extends AbstractController {
                 $_SESSION['surename'] = $user_item->surename;
                 $_SESSION['name'] = $user_item->name;
                 $_SESSION['patronymic'] = $user_item->patronymic;
+                $_SESSION['authError'] = null;
                 Router::redirect('tasks/');
             } else {
-                $arrayErrors['authError'] = 'Вы ввели неверный пароль!';
+                $_SESSION['authError'] = 'Вы ввели неверный пароль!';
             }
         } else {
-            $arrayErrors['authError'] = 'Вы ввели неверный пароль!';
+            $_SESSION['authError'] = 'Вы ввели неверный пароль!';
         }
-        $this->action_index($arrayErrors);
+        Router::redirect('auth/');
     }
 
-    //Проверки
+//Проверки
     private function user_validate(array $user) {
-        $arrayErrors = array();
         if ($user['password'] !== $user['password_confirm']) {
-            $arrayErrors['passError'] = 'Пароли не совпадают';
+            $_SESSION['passError'] = 'Пароли не совпадают';
+        } else {
+            $_SESSION['passError'] = null;
         }
         $user_id_doc = $this->model->selectByID($user['id_doc']);
         if ($user_id_doc) {
-            $arrayErrors['idDocError'] = 'Пользователь с таким id уже существует';
+            $_SESSION['idDocError'] = 'Пользователь с таким id уже существует';
+        } else {
+            $_SESSION['idDocError'] = null;
         }
         $user_item = $this->model->selectByName($user['login']);
         if ($user_item) {
-            $arrayErrors['loginError'] = 'Пользователь с таким логином существует';
+            $_SESSION['loginError'] = 'Пользователь с таким логином существует';
+        } else {
+            $_SESSION['loginError'] = null;
         }
         $this->model->table = 'groups';
         $registration_priority = $this->model->all();
@@ -98,9 +100,15 @@ class Auth extends AbstractController {
             }
         }
         if ($this->model->group_id == null) {
-            $arrayErrors['secretPassError'] = 'Неправильный пароль доступа';
+            $_SESSION['secretPassError'] = 'Неправильный пароль доступа';
+        } else {
+            $_SESSION['secretPassError'] = null;
         }
-        return $arrayErrors;
+        if ($_SESSION['passError'] !== null || $_SESSION['idDocError'] !== null || $_SESSION['loginError'] !== null || $_SESSION['secretPassError'] !== null) {
+            return FALSE;
+        } else {
+            return true;
+        }
     }
 
     static public function getAuthLogin() {
@@ -110,24 +118,11 @@ class Auth extends AbstractController {
         return $_SESSION['login'];
     }
 
-    //Выход из сессии
+//Выход из сессии
     public function action_exit() {
         if (session_destroy()) {
-
             Router::redirect('auth/');
         }
-    }
-
-    //Генерируем referral_link исходя из имени и фамилии
-    static function generateLink($length = 12) {
-        $user = filter_input_array(INPUT_POST);
-        $str = $user['name'] . $user['surname'];
-        $numChars = strlen($str);
-        $string = '';
-        for ($i = 0; $i < $length; $i++) {
-            $string .= substr($str, rand(1, $numChars) - 1, 1);
-        }
-        return $string;
     }
 
 }
