@@ -32,8 +32,8 @@ abstract class AbstractModel {
         return false;
     }
 
-    public function selectByName($name) {
-        $query = "SELECT * FROM " . $this->table . " WHERE login='" . $name . "' LIMIT 1";
+    public function selectByLogin($login) {
+        $query = "SELECT * FROM " . $this->table . " WHERE login='" . $login . "' LIMIT 1";
         $result = $this->db->query($query);
         if ($result) {
             return $result->fetch_object();
