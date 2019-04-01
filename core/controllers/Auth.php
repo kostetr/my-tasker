@@ -20,10 +20,12 @@ class Auth extends AbstractController {
 
     public function action_index() {
         // обнуляем переменные с ошибками регистрации
-        $_SESSION['Errors']['idDoc'] = null;
-        $_SESSION['Errors']['pass'] = null;
-        $_SESSION['Errors']['login'] = null;
-        $_SESSION['Errors']['secretPass'] = null;
+        
+        $_SESSION['Errors']['registr'] = null;
+//        $_SESSION['Errors']['idDoc'] = null;
+//        $_SESSION['Errors']['pass'] = null;
+//        $_SESSION['Errors']['login'] = null;
+//        $_SESSION['Errors']['secretPass'] = null;
         // Указываем имя файла содержащего контент и отображаем.96
         $this->viewer->content_view = "auth.php";
         $this->viewer->show();
@@ -109,27 +111,27 @@ class Auth extends AbstractController {
         //Если пароли введены в два поля не одинаковые то в сессию записываем ошибку. 
         //Если одинаковые то null.
         if ($user['password'] !== $user['password_confirm']) {
-            $_SESSION['Errors']['pass'] = 'Пароли не совпадают';
+            $_SESSION['Errors']['registr']['pass'] = 'Пароли не совпадают';
         } else {
-            $_SESSION['Errors']['pass'] = null;
+            $_SESSION['Errors']['registr']['pass'] = null;
         }
         // Проверка существует ли в БД пользователь с таким же Табельным. 
         // Если да то записываем ошибку в сессию. 
         // Если нет то null.
         $user_id_doc = $this->model->selectByID($user['id_doc']);
         if ($user_id_doc) {
-            $_SESSION['Errors']['idDoc'] = 'Пользователь с таким id уже существует';
+            $_SESSION['Errors']['registr']['idDoc'] = 'Пользователь с таким id уже существует';
         } else {
-            $_SESSION['Errors']['idDoc'] = null;
+            $_SESSION['Errors']['registr']['idDoc'] = null;
         }
         // Проверка существует ли в БД пользователь с таким же Логином. 
         // Если да то записываем ошибку в сессию. 
         // Если нет то null.
         $user_item = $this->model->selectByLogin($user['login']);
         if ($user_item) {
-            $_SESSION['Errors']['login'] = 'Пользователь с таким логином существует';
+            $_SESSION['Errors']['registr']['login'] = 'Пользователь с таким логином существует';
         } else {
-            $_SESSION['Errors']['login'] = null;
+            $_SESSION['Errors']['registr']['login'] = null;
         }
         // Сохраняем в переменную массив с таблици groups из БД. 
         // Перебераем массив и сверяем его с secret_pass (Паролей несколько, они определяют уровень доступа пользователей) 
@@ -146,12 +148,12 @@ class Auth extends AbstractController {
         // Мы записываем в таком случае ошибку в сессию.
         //  Если id группы не равна null то в сессию к ошибкам записываем null
         if ($this->model->group_id == null) {
-            $_SESSION['Errors']['secretPass'] = 'Неправильный пароль доступа';
+            $_SESSION['Errors']['registr']['secretPass'] = 'Неправильный пароль доступа';
         } else {
-            $_SESSION['Errors']['secretPass'] = null;
+            $_SESSION['Errors']['registr']['secretPass'] = null;
         }
         // Если одна из переменных массива ошибок будет не равна Null то ретурним False и валидация будет не пройдена.
-        if ($_SESSION['Errors']['pass'] !== null || $_SESSION['Errors']['idDoc'] !== null || $_SESSION['Errors']['login'] !== null || $_SESSION['Errors']['secretPass'] !== null) {
+        if ($_SESSION['Errors']['registr']['pass'] !== null || $_SESSION['Errors']['registr']['idDoc'] !== null || $_SESSION['Errors']['registr']['login'] !== null || $_SESSION['Errors']['registr']['secretPass'] !== null) {
             return FALSE;
         } else {
             return true;
