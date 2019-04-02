@@ -93,7 +93,8 @@ class Auth extends AbstractController {
                 $_SESSION['surename'] = $user_item->surename;
                 $_SESSION['name'] = $user_item->name;
                 $_SESSION['patronymic'] = $user_item->patronymic;
-                $_SESSION['authError'] = null;
+                $_SESSION['accessLevel'] = $this->model->selectAccessLevel($user_item->id);
+                $_SESSION['Errors'] = null;
                 Router::redirect('tasks/');
             } else {
                 $_SESSION['Errors']['auth'] = 'Вы ввели неверный пароль!';
@@ -165,6 +166,12 @@ class Auth extends AbstractController {
             return false;
         }
         return $_SESSION['login'];
+    }
+    static public function getAccessLevel() {
+        if (empty($_SESSION['accessLevel'])) {
+            return false;
+        }
+        return $_SESSION['accessLevel'];
     }
 
 //Выход из сессии
