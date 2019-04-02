@@ -18,7 +18,10 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="<?= \core\Router::root() ?>/users/list">Пользователи</a>
-            </li>           
+            </li>  
+            <li class="rightbutton-2">
+                <a href="<?= \core\Router::root() ?>/admin" class="btn btn-secondary">Админ панель</a>
+            </li>    
             <li class="rightbutton">
                 <a href="<?= \core\Router::root() ?>/auth/exit" class="btn btn-secondary">Выход</a>
             </li>        
