@@ -38,8 +38,10 @@ class ModelAuth extends AbstractModel {
     public function selectAccessLevel($userID) {
         $query = "SELECT value FROM groups WHERE id='" . $userID . "' LIMIT 1";
         $result = $this->db->query($query);
-        if ($result) {
-            return $result->fetch_all(MYSQLI_ASSOC);
+        if ($result) {            
+//            var_dump($result->fetch_assoc());
+//            exit();
+            return intval($result->fetch_assoc()['value']);            
         }
     }
 }

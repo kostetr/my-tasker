@@ -20,7 +20,7 @@ class Auth extends AbstractController {
 
     public function action_index() {
         // обнуляем переменные с ошибками регистрации
-        
+
         $_SESSION['Errors']['registr'] = null;
 //        $_SESSION['Errors']['idDoc'] = null;
 //        $_SESSION['Errors']['pass'] = null;
@@ -93,7 +93,9 @@ class Auth extends AbstractController {
                 $_SESSION['surename'] = $user_item->surename;
                 $_SESSION['name'] = $user_item->name;
                 $_SESSION['patronymic'] = $user_item->patronymic;
-                $_SESSION['accessLevel'] = $this->model->selectAccessLevel($user_item->id);
+                $_SESSION['accessLevel'] = $this->model->selectAccessLevel($user_item->group_id);
+//                var_dump($_SESSION['accessLevel']);
+//                exit();
                 $_SESSION['Errors'] = null;
                 Router::redirect('tasks/');
             } else {
@@ -105,9 +107,10 @@ class Auth extends AbstractController {
         Router::redirect('auth/');
     }
 
-/*
- * Валидация регистрационных данных
- */
+    /*
+     * Валидация регистрационных данных
+     */
+
     private function user_validate(array $user) {
         //Если пароли введены в два поля не одинаковые то в сессию записываем ошибку. 
         //Если одинаковые то null.
@@ -167,11 +170,13 @@ class Auth extends AbstractController {
         }
         return $_SESSION['login'];
     }
-    static public function getAccessLevel() {
-        if (empty($_SESSION['accessLevel'])) {
-            return false;
+
+    static public function accessLevel() {
+        if ($_SESSION['accessLevel'] === 100 || $_SESSION['accessLevel'] === 200) {
+            return TRUE;
+        } else {
+            return FALSE;
         }
-        return $_SESSION['accessLevel'];
     }
 
 //Выход из сессии

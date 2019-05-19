@@ -3,6 +3,7 @@
 namespace core\controllers;
 
 use core\controllers\AbstractController;
+use core\controllers\Auth;
 use core\models\AdminModel;
 use core\Router;
 
@@ -11,8 +12,8 @@ class Admin extends AbstractController {
     public function __construct() {
         if (!Auth::getAuthLogin()) {
             Router::redirect('auth/');
-        }elseif ($_SESSION['accessLevel']!==200 || $_SESSION['accessLevel']!==100 ) {
-            Router::redirect('admin/accessClosed');
+        }elseif (!Auth::accessLevel()) {
+            Router::redirect('tasks/');
         }
         parent::__construct();
         $this->model = new AdminModel();
@@ -23,9 +24,4 @@ class Admin extends AbstractController {
         $this->viewer->content_view = 'content' . DIRECTORY_SEPARATOR . 'admin_index_view.php';
         $this->viewer->show();
     }
-    public function action_accessClosed() {
-        $this->viewer->content_view = 'content' . DIRECTORY_SEPARATOR . 'admin_ access_closed_view.php';
-        $this->viewer->show();
-    }
-
 }
