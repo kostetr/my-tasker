@@ -1,3 +1,8 @@
+<div class="container-fluid">
+  Личная информация пользователя.
+</div>
+
+
 <div class="card text-center">
     <div class="card-header">
         <ul class="nav nav-tabs card-header-tabs">

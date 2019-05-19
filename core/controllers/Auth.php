@@ -94,8 +94,6 @@ class Auth extends AbstractController {
                 $_SESSION['name'] = $user_item->name;
                 $_SESSION['patronymic'] = $user_item->patronymic;
                 $_SESSION['accessLevel'] = $this->model->selectAccessLevel($user_item->group_id);
-//                var_dump($_SESSION['accessLevel']);
-//                exit();
                 $_SESSION['Errors'] = null;
                 Router::redirect('tasks/');
             } else {
