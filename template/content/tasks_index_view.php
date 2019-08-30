@@ -1,8 +1,3 @@
-<div class="container-fluid">
-  Личная информация пользователя.
-</div>
-
-
 <div class="card text-center">
     <div class="card-header">
         <ul class="nav nav-tabs card-header-tabs">
@@ -23,7 +18,7 @@
                 <a class="nav-link" href="<?= \core\Router::root() ?>/tasks/addtasks">Добавить задачу</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="<?= \core\Router::root() ?>/users/list">Пользователи</a>
+                <a class="nav-link" href="<?= \core\Router::root() ?>/users">Профиль пользователя</a>
             </li>
             <li class="rightbutton-2">
                 <a href="<?= \core\Router::root() ?>/admin" class="btn btn-secondary">Админ панель</a>
